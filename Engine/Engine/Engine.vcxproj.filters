@@ -1,39 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="HelperClasses">
+      <UniqueIdentifier>{63408587-7d90-4680-8860-6155a6bc7de0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Ressourcendateien">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{2eaf554a-d4a5-45e3-8306-cc5a4f6d6a5e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EventHandler.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="UnorderdMap.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
     <ClInclude Include="ExternalInclude.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>HelperClasses</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneHandler.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalEventHandler.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalEnums.h">
+      <Filter>HelperClasses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>HelperClasses</Filter>
     </ClCompile>
     <ClCompile Include="SceneHandler.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="GlobalEventHandler.cpp">
+      <Filter>HelperClasses</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -115,15 +115,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseObject.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="ExternalInclude.h" />
     <ClInclude Include="GlobalEnums.h" />
     <ClInclude Include="GlobalEventHandler.h" />
+    <ClInclude Include="Frameworks.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneHandler.h" />
     <ClInclude Include="UnorderdMap.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GlobalEventHandler.cpp" />
     <ClCompile Include="main.cpp" />

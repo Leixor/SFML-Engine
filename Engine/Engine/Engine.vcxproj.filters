@@ -7,6 +7,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{2eaf554a-d4a5-45e3-8306-cc5a4f6d6a5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{06600968-0e47-46a8-8e25-dfc9a32e4e98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EventHandler.h">
@@ -30,6 +33,10 @@
     <ClInclude Include="GlobalEnums.h">
       <Filter>HelperClasses</Filter>
     </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Frameworks.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EventHandler.cpp">
@@ -44,6 +51,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GlobalEventHandler.cpp">
       <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

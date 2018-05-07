@@ -19,6 +19,30 @@ void SceneHandler::update()
 	}
 }
 
+void SceneHandler::draw()
+{
+	for (unsigned int i = 0; i < SceneHandler::scenes.size(); i++)
+	{
+		SceneHandler::scenes.getContentByPriority(i)->draw();
+	}
+}
+
+void SceneHandler::handleEvents(LIBRARY_EVENT_CLASS eventType)
+{
+	for (unsigned int i = 0; i < SceneHandler::scenes.size(); i++)
+	{
+		SceneHandler::scenes.getContentByPriority(i)->handleEvents(eventType);
+	}
+}
+
+void SceneHandler::handleInputs()
+{
+	for (unsigned int i = 0; i < SceneHandler::scenes.size(); i++)
+	{
+		SceneHandler::scenes.getContentByPriority(i)->handleInputs();
+	}
+}
+
 void SceneHandler::deleteScene(string sceneName)
 {
 	SceneHandler::scenes.remove(sceneName);
@@ -44,4 +68,10 @@ bool SceneHandler::sceneExists(string name)
 	return SceneHandler::scenes.itemExists(name);
 }
 
+LIBRARY_WINDOW_CLASS * const SceneHandler::getWindow()
+{
+	return SceneHandler::window;
+}
+
 UnorderdMap<string, Scene*> SceneHandler::scenes;
+LIBRARY_WINDOW_CLASS* SceneHandler::window;

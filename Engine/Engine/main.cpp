@@ -1,6 +1,12 @@
 #pragma once
 #include "ExternalInclude.h"
 #include "GlobalEnums.h"
+#include "Frameworks.h"
+
+bool pollEvent()
+{
+	return true;
+}
 
 int main()
 {
@@ -10,6 +16,11 @@ int main()
 
 	if (tmp == VISIBLE)
 		printf("HI");
+
+	LIBRARY_WINDOW_CLASS i = 1;
+	LIBRARY_EVENT_CLASS j = i;
+	if(LIBRARY_POLLEVENT_FUNCTION())
+		printf("%d", j);
 
 	while (true)
 	{

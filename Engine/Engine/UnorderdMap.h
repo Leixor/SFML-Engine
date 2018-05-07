@@ -2,17 +2,6 @@
 #include "ExternalInclude.h"
 
 template<typename Iterator, typename Content>
-struct MapContent
-{
-	Iterator iterator;
-	Content content;
-
-	MapContent(Iterator iterator, Content content)
-		:iterator(iterator), content(content)
-	{}
-};
-
-template<typename Iterator, typename Content>
 struct UnorderdMap
 {
 private:

@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "UnorderdMap.h"
 #include "GlobalEnums.h"
+#include "Frameworks.h"
 
 class Scene;
 class SceneHandler
@@ -12,8 +13,8 @@ public:
 
 	static void update();
 	static void draw();
-	static void handleEvents();
-	static void handleInput();
+	static void handleEvents(LIBRARY_EVENT_CLASS eventType);
+	static void handleInputs();
 
 	template <typename SceneType>
 	static SceneType addScene(string name, SceneType scene, Visibility visible = ALL);
@@ -26,8 +27,10 @@ public:
 
 	static Scene* getSceneByName(string name);
 	static bool sceneExists(string name);
+	static LIBRARY_WINDOW_CLASS* const getWindow();
 protected:
 	static UnorderdMap<string, Scene*> scenes;
+	static LIBRARY_WINDOW_CLASS* window;
 };
 
 template<typename SceneType>

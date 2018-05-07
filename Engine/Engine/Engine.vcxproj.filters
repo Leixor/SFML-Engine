@@ -37,6 +37,8 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Frameworks.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="ConfigHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EventHandler.cpp">
@@ -55,5 +57,7 @@
     <ClCompile Include="BaseObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="ConfigHandler.cpp" />
   </ItemGroup>
 </Project>

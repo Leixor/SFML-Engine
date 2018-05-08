@@ -1,5 +1,5 @@
 #pragma once
-#include "UnorderdMap.h"
+#include "UnorderedMap.h"
 
 class EventHandler
 {
@@ -13,7 +13,7 @@ public:
 	void callEvent(string name, string args[]);
 
 protected:
-	UnorderdMap<string, function<void(void)>> eventFunctions;
-	UnorderdMap<string, function<void(string[])>> argEventFunctions;
+	UnorderedMap<string, function<void(void)>> eventFunctions;
+	UnorderedMap<string, function<void(string[])>> argEventFunctions;
 };
 

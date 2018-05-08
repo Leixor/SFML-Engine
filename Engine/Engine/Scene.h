@@ -47,7 +47,7 @@ public:
 protected:
 	// Time in milliseconds till update
 	unsigned int updateRate;
-	UnorderdMap<string, BaseObject*> objects;
+	UnorderedMap<string, BaseObject*> objects;
 private:
 	// Counter for updateRate
 	unsigned int updateCount;

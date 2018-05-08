@@ -4,30 +4,48 @@
     <Filter Include="HelperClasses">
       <UniqueIdentifier>{63408587-7d90-4680-8860-6155a6bc7de0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{2eaf554a-d4a5-45e3-8306-cc5a4f6d6a5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{06600968-0e47-46a8-8e25-dfc9a32e4e98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine">
+      <UniqueIdentifier>{01617b05-0198-4617-b63a-f8de166aadf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{a9b82f04-03b1-4916-89b4-21396a8d65e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HelperClasses\ConfigHandler">
+      <UniqueIdentifier>{cc60d8e4-49f4-47e1-818b-a07665eef1e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneStuff">
+      <UniqueIdentifier>{2eaf554a-d4a5-45e3-8306-cc5a4f6d6a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneStuff\Scene">
+      <UniqueIdentifier>{b4ceb3dc-5070-4568-8209-dc9d8f1f9a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneStuff\SceneHandler">
+      <UniqueIdentifier>{888e5733-9dfa-4757-873c-c1a02d7bb645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\EventHandler">
+      <UniqueIdentifier>{4cb524d9-58ee-45a1-9704-5497f1f28329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\AnimationStuff">
+      <UniqueIdentifier>{1652afb0-9f15-4d7e-a2d7-f6c334f191c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\AnimationStuff\AnimationHandler">
+      <UniqueIdentifier>{874ddf07-e995-4e33-a971-7384ed38fb8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\AnimationStuff\Animation">
+      <UniqueIdentifier>{0a0a4a2f-e98b-4b5f-bf4e-8cc83c21f419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\AnimationStuff\Keyframe">
+      <UniqueIdentifier>{4fdc1342-ec81-4ecf-8712-b4013ff24fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\AnimationStuff\SubAnimation">
+      <UniqueIdentifier>{dfb9b154-e466-478d-9534-5d3a8ad74dbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EventHandler.h">
-      <Filter>HelperClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="UnorderdMap.h">
-      <Filter>HelperClasses</Filter>
-    </ClInclude>
     <ClInclude Include="ExternalInclude.h">
-      <Filter>HelperClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneHandler.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalEventHandler.h">
       <Filter>HelperClasses</Filter>
     </ClInclude>
     <ClInclude Include="GlobalEnums.h">
@@ -36,28 +54,82 @@
     <ClInclude Include="BaseObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Frameworks.h" />
-    <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="ConfigHandler.h" />
+    <ClInclude Include="GameEngine.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Frameworks.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="UnorderedMap.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigHandler.h">
+      <Filter>HelperClasses\ConfigHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>GameEngine\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalEventHandler.h">
+      <Filter>GameEngine\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>SceneStuff\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneHandler.h">
+      <Filter>SceneStuff\SceneHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationHandler.h">
+      <Filter>GameEngine\AnimationStuff\AnimationHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2f.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>GameEngine\AnimationStuff\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyframe.h">
+      <Filter>GameEngine\AnimationStuff\Keyframe</Filter>
+    </ClInclude>
+    <ClInclude Include="SubAnimation.h">
+      <Filter>GameEngine\AnimationStuff\SubAnimation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EventHandler.cpp">
-      <Filter>HelperClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneHandler.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="GlobalEventHandler.cpp">
-      <Filter>HelperClasses</Filter>
-    </ClCompile>
     <ClCompile Include="BaseObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="ConfigHandler.cpp" />
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigHandler.cpp">
+      <Filter>HelperClasses\ConfigHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>GameEngine\EventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalEventHandler.cpp">
+      <Filter>GameEngine\EventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>SceneStuff\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHandler.cpp">
+      <Filter>SceneStuff\SceneHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationHandler.cpp">
+      <Filter>GameEngine\AnimationStuff\AnimationHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>GameEngine\AnimationStuff\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyframe.cpp">
+      <Filter>GameEngine\AnimationStuff\Keyframe</Filter>
+    </ClCompile>
+    <ClCompile Include="SubAnimation.cpp">
+      <Filter>GameEngine\AnimationStuff\SubAnimation</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

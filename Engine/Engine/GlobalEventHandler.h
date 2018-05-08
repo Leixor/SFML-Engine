@@ -1,6 +1,6 @@
 #pragma once
 #include "ExternalInclude.h"
-#include "UnorderdMap.h"
+#include "UnorderedMap.h"
 
 class GlobalEventHandler
 {
@@ -14,7 +14,7 @@ public:
 	static void callEvent(string name, string args[]);
 
 private:
-	static UnorderdMap<string, function<void(void)>> eventFunctions;
-	static UnorderdMap<string, function<void(string[])>> argEventFunctions;
+	static UnorderedMap<string, function<void(void)>> eventFunctions;
+	static UnorderedMap<string, function<void(string[])>> argEventFunctions;
 };
 

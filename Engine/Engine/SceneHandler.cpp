@@ -88,5 +88,5 @@ void SceneHandler::createWindow()
 }
 
 
-UnorderdMap<string, Scene*> SceneHandler::scenes;
+UnorderedMap<string, Scene*> SceneHandler::scenes;
 LIBRARY_WINDOW_CLASS* SceneHandler::window = LIBRARY_CREATEWINDOW_FUNCTION();

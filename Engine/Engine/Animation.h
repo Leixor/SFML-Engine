@@ -4,12 +4,6 @@
 #include "BaseObject.h"
 #include "UnorderedMap.h"
 
-enum AnimationType {
-	ROTATE = 1,
-	SCALE = 2,
-	MOVE = 4
-};
-
 enum KeyframeAction
 {
 	ANISTART = 1,
@@ -25,29 +19,27 @@ public:
 	~Animation() {}
 
 	void update();
-	void update(BaseObject* object, AniUpdateState updateState)
-	{
-		this->update();
-	}
+	void update(BaseObject* object);
 
 	template <typename returnType>
-	returnType addSubAnimation(string name, returnType animation, unsigned int time = 0)
-	{
-		animation->setUpdateRate(this->updateRate);
-		this->subAnimations.push(name, animation);
-		this->addKeyframe(name, ANISTART, time);
-		return animation;
-	}
+	returnType addSubAnimation(string name, returnType animation, unsigned int time = 0);
 	void addSubAnimation(string name, SubAnimation* animation, unsigned int time = 0);
 	void addKeyframe(string name, KeyframeAction action, unsigned int time);
 	void removeKeyframe(unsigned int time);
-	void addObject(BaseObject* object, AniUpdateState updateState = ObjectAndText);
+	void addObject(BaseObject* object);
 	void removeObject(BaseObject* object);
 private:
 	vector<Keyframe*> Keyframes;
-	UnorderedMap<AniUpdateState, BaseObject*> objects;
+	vector<BaseObject*> objects;
 	UnorderedMap<string, SubAnimation*> subAnimations;
 	unsigned int updateRateCount;
 };
 
-
+template<typename returnType>
+inline returnType Animation::addSubAnimation(string name, returnType animation, unsigned int time)
+{
+	animation->setUpdateRate(this->updateRate);
+	this->subAnimations.push(name, animation);
+	this->addKeyframe(name, ANISTART, time);
+	return animation;
+}

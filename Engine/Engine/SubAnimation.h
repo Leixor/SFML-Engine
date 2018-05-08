@@ -3,12 +3,7 @@
 #include "BaseObject.h"
 #include "Vector2f.h"
 
-enum AniUpdateState
-{
-	ObjectOnly,
-	TextOnly,
-	ObjectAndText
-};
+
 
 struct BezierHandles
 {
@@ -26,7 +21,7 @@ public:
 	SubAnimation(unsigned int duration, BezierHandles handles = BezierHandles(0.1f, 0.1f, 0.9f, 0.9f));
 	~SubAnimation();
 
-	virtual void update(BaseObject* object, AniUpdateState updateState) = 0;
+	virtual void update(BaseObject* object) = 0;
 
 	void start(bool loop = false);
 	void restart();

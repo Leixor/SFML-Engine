@@ -81,9 +81,6 @@
     <ClInclude Include="AnimationHandler.h">
       <Filter>GameEngine\AnimationStuff\AnimationHandler</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2f.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>GameEngine\AnimationStuff\Animation</Filter>
     </ClInclude>
@@ -92,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="SubAnimation.h">
       <Filter>GameEngine\AnimationStuff\SubAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2f.h">
+      <Filter>HelperClasses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

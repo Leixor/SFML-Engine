@@ -2,200 +2,253 @@
 #include "ExternalInclude.h"
 
 template<typename Iterator, typename Content>
-struct UnorderdMap
+class UnorderdMap
 {
-private:
-	vector<Content> objects;
-	map<Iterator, int> iteratorIndex;
-	vector<int> priorityIndex;
+	private:
+		vector<Content> objects;
+		map<Iterator, int> iteratorIndex;
+		vector<int> priorityIndex;
 
-public:
-	void push(Iterator iterator, Content content)
-	{
+	public:
+
+		// Basic operations
+		void push(Iterator iterator, Content content);
+		void remove(Iterator iterator);
+		void remove(int index);
+		void clear();
+		unsigned int size();
+
+
+		// Setters and getters
+		void set(int index, Content content);
+		void set(Iterator iterator, Content content);
+		Content get(Iterator iterator);
+		Content get(int index);
+		int getIndex(Iterator iterator);
+		Iterator getIterator(int index);
+		Iterator getIterator(Content content);
+
+		// Itemcheck
+		bool itemExists(Iterator iterator);
+
+
+		// Priority
+		int getPriority(Iterator iterator);
+		int getPriority(int index);
+		void setPriority(Iterator iterator, int priority);
+		void setPriority(int index, int priority);
+		Content getContentByPriority(int priority);
+		int getIndexByPriority(int priority);
+
+};
+
+template<typename Iterator, typename Content>
+inline void UnorderdMap<Iterator, Content>::push(Iterator iterator, Content content)
+{
+
 		this->objects.push_back(content);
 		this->iteratorIndex.emplace(iterator, objects.size() - 1);
 		this->priorityIndex.push_back(objects.size() - 1);
-	}
+}
 
-	unsigned int size()
+template<typename Iterator, typename Content>
+inline void UnorderdMap<Iterator, Content>::remove(Iterator iterator)
+{
+	int index = this->iteratorIndex.at(iterator);
+	this->objects.erase(this->objects.begin() + index);
+	this->iteratorIndex.erase(iterator);
+
+	for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
 	{
-		return this->objects.size();
-	}
-
-	void clear()
-	{
-		this->objects.clear();
-		this->iteratorIndex.clear();
-		this->priorityIndex.clear();
-	}
-
-	void remove(Iterator iterator)
-	{
-		int index = this->iteratorIndex.at(iterator);
-		this->objects.erase(this->objects.begin() + index);
-		this->iteratorIndex.erase(iterator);
-
-		for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
+		if (this->priorityIndex.at(i) == index)
 		{
-			if (this->priorityIndex.at(i) == index)
-			{
-				this->priorityIndex.erase(this->priorityIndex.begin() + i);
-				break;
-			}
+			this->priorityIndex.erase(this->priorityIndex.begin() + i);
+			break;
 		}
 	}
+}
 
-	void remove(int index)
+template<typename Iterator, typename Content>
+inline void UnorderdMap<Iterator, Content>::remove(int index)
+{
+	this->objects.erase(this->objects.begin() + index);
+
+	map<Iterator, int>::iterator it;
+	it = this->iteratorIndex.begin();
+	for (int i = 0; i < index; i++)
+		it++;
+	this->iteratorIndex.erase(it->first);
+
+	for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
 	{
-		this->objects.erase(this->objects.begin() + index);
-
-		map<Iterator, int>::iterator it;
-		it = this->iteratorIndex.begin();
-		for (int i = 0; i < index; i++)
-			it++;
-		this->iteratorIndex.erase(it->first);
-
-		for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
+		if (this->priorityIndex.at(i) == index)
 		{
-			if (this->priorityIndex.at(i) == index)
-			{
-				this->priorityIndex.erase(this->priorityIndex.begin() + i);
-				break;
-			}
+			this->priorityIndex.erase(this->priorityIndex.begin() + i);
+			break;
 		}
 	}
+}
 
-	int getIndex(Iterator iterator)
-	{
-		return this->iteratorIndex.at(iterator);
-	}
+template<typename Iterator, typename Content>
+inline void UnorderdMap<Iterator, Content>::clear()
+{
+	this->objects.clear();
+	this->iteratorIndex.clear();
+	this->priorityIndex.clear();
+}
 
-	void set(int index, Content content)
-	{
-		this->objects.at(index) = content;
-	}
+template<typename Iterator, typename Content>
+inline unsigned int UnorderdMap<Iterator, Content>::size()
+{
+	return this->objects.size();
+}
 
-	void set(Iterator iterator, Content content)
-	{
-		this->objects.at(this->iteratorIndex.at(iterator)) = content;
-	}
+template<typename Iterator, typename Content>
+inline void UnorderdMap<Iterator, Content>::set(int index, Content content)
+{
+	this->objects.at(index) = content;
+}
 
-	Content get(Iterator iterator)
-	{
-		return this->objects.at(this->iteratorIndex.at(iterator));
-	}
+template<typename Iterator, typename Content>
+inline void UnorderdMap<Iterator, Content>::set(Iterator iterator, Content content)
+{
+	this->objects.at(this->iteratorIndex.at(iterator)) = content;
+}
 
-	Content get(int index)
-	{
-		return this->objects.at(index);
-	}
+template<typename Iterator, typename Content>
+inline Content UnorderdMap<Iterator, Content>::get(Iterator iterator)
+{
+	return this->objects.at(this->iteratorIndex.at(iterator));
+}
 
-	Iterator getIterator(int index)
-	{
-		map<Iterator, int>::iterator it;
-		it = this->iteratorIndex.begin();
-		for (int i = 0; i < index; i++)
-			it++;
-		return it->first;
-	}
+template<typename Iterator, typename Content>
+inline Content UnorderdMap<Iterator, Content>::get(int index)
+{
+	return this->objects.at(index);
+}
 
-	Iterator getIterator(Content content)
+template<typename Iterator, typename Content>
+inline int UnorderdMap<Iterator, Content>::getIndex(Iterator iterator)
+{
+	return this->iteratorIndex.at(iterator);
+}
+
+template<typename Iterator, typename Content>
+inline Iterator UnorderdMap<Iterator, Content>::getIterator(int index)
+{
+	map<Iterator, int>::iterator it;
+	it = this->iteratorIndex.begin();
+	for (int i = 0; i < index; i++)
+		it++;
+	return it->first;
+}
+
+template<typename Iterator, typename Content>
+inline Iterator UnorderdMap<Iterator, Content>::getIterator(Content content)
+{
+	for (unsigned int i = 0; i < objects.size(); i++)
 	{
-		for (unsigned int i = 0; i < objects.size(); i++)
+		if (objects.at(i) == content)
 		{
-			if (objects.at(i) == content)
-			{
-				map<Iterator, int>::iterator it;
-				it = this->iteratorIndex.begin();
-				for (int j = 0; j < i; j++)
-					it++;
-				return this->iteratorIndex.at(it->first);
-			}
+			map<Iterator, int>::iterator it;
+			it = this->iteratorIndex.begin();
+			for (int j = 0; j < i; j++)
+				it++;
+			return this->iteratorIndex.at(it->first);
 		}
-		throw;
 	}
+	throw;
+}
 
-	bool itemExists(Iterator iterator)
+template<typename Iterator, typename Content>
+inline bool UnorderdMap<Iterator, Content>::itemExists(Iterator iterator)
+{
+	try
 	{
-		try
-		{
-			this->iteratorIndex.at(iterator);
-			return true;
-		}
-		catch (...)
-		{
-			return false;
-		}
+		this->iteratorIndex.at(iterator);
 		return true;
 	}
-
-	int getPriority(Iterator iterator)
+	catch (...)
 	{
-		int index = this->iteratorIndex.at(iterator);
+		return false;
+	}
+	return true;
+}
 
-		for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
+template<typename Iterator, typename Content>
+inline int UnorderdMap<Iterator, Content>::getPriority(Iterator iterator)
+{
+	int index = this->iteratorIndex.at(iterator);
+
+	for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
+	{
+		if (this->priorityIndex.at(i) == index)
 		{
-			if (this->priorityIndex.at(i) == index)
-			{
-				return (int)i;
-			}
+			return (int)i;
 		}
-		throw;
 	}
+	throw;
+}
 
-	int getPriority(int index)
+template<typename Iterator, typename Content>
+inline int UnorderdMap<Iterator, Content>::getPriority(int index)
+{
+	for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
 	{
-		for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
+		if (this->priorityIndex.at(i) == index)
 		{
-			if (this->priorityIndex.at(i) == index)
-			{
-				return i;
-			}
+			return i;
 		}
-		throw;
 	}
+	throw;
+}
 
-	void setPriority(Iterator iterator, int priority)
+template<typename Iterator, typename Content>
+inline void UnorderdMap<Iterator, Content>::setPriority(Iterator iterator, int priority)
+{
+	int indexInVector = this->iteratorIndex.at(iterator);
+
+	int currentPriorityIndex = 0;
+	for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
 	{
-		int indexInVector = this->iteratorIndex.at(iterator);
-
-		int currentPriorityIndex = 0;
-		for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
+		if (this->priorityIndex.at(i) == indexInVector)
 		{
-			if (this->priorityIndex.at(i) == indexInVector)
-			{
-				currentPriorityIndex = i;
-				break;
-			}
+			currentPriorityIndex = i;
+			break;
 		}
-
-		this->priorityIndex.erase(this->priorityIndex.begin() + currentPriorityIndex);
-		this->priorityIndex.insert(this->priorityIndex.begin() + priority, indexInVector);
 	}
 
-	void setPriority(int index, int priority)
+	this->priorityIndex.erase(this->priorityIndex.begin() + currentPriorityIndex);
+	this->priorityIndex.insert(this->priorityIndex.begin() + priority, indexInVector);
+}
+
+template<typename Iterator, typename Content>
+inline void UnorderdMap<Iterator, Content>::setPriority(int index, int priority)
+{
+	int currentPriorityIndex = 0;
+	for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
 	{
-		int currentPriorityIndex = 0;
-		for (unsigned int i = 0; i < this->priorityIndex.size(); i++)
+		if (this->priorityIndex.at(i) == index)
 		{
-			if (this->priorityIndex.at(i) == index)
-			{
-				currentPriorityIndex = i;
-				break;
-			}
+			currentPriorityIndex = i;
+			break;
 		}
-
-		this->priorityIndex.erase(this->priorityIndex.begin() + currentPriorityIndex);
-		this->priorityIndex.insert(this->priorityIndex.begin() + priority, index);
 	}
 
-	Content getContentByPriority(int priority)
-	{
-		return this->objects.at(this->priorityIndex.at(priority));
-	}
+	this->priorityIndex.erase(this->priorityIndex.begin() + currentPriorityIndex);
+	this->priorityIndex.insert(this->priorityIndex.begin() + priority, index);
+}
 
-	int getIndexByPriority(int priority)
-	{
-		return this->priorityIndex.at(priority);
-	}
-};
+template<typename Iterator, typename Content>
+inline Content UnorderdMap<Iterator, Content>::getContentByPriority(int priority)
+{
+	return this->objects.at(this->priorityIndex.at(priority));
+}
+
+template<typename Iterator, typename Content>
+inline int UnorderdMap<Iterator, Content>::getIndexByPriority(int priority)
+{
+	return this->priorityIndex.at(priority);
+}
+
+

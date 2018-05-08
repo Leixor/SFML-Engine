@@ -1,7 +1,7 @@
 #pragma once
 #include "ExternalInclude.h"
 #include "GlobalEnums.h"
-#include "Frameworks.h"
+#include "GameEngine.h"
 
 bool pollEvent()
 {
@@ -10,5 +10,6 @@ bool pollEvent()
 
 int main()
 {
-
+	GameEngine engine;
+	engine.loop();
 }

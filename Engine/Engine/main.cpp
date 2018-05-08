@@ -2,14 +2,17 @@
 #include "ExternalInclude.h"
 #include "GlobalEnums.h"
 #include "GameEngine.h"
+#include "BaseObject.h"
 
 bool pollEvent()
 {
 	return true;
 }
 
+
+
+
 int main()
 {
-	GameEngine engine;
-	engine.loop();
+	return 0;
 }

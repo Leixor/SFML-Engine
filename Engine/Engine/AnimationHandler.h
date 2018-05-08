@@ -16,6 +16,7 @@ public:
 
 	Animation* addAnimation(string name, Animation* animation);
 	void removeAnimation(string name);
+
 private:
 	UnorderedMap<string, Animation*> animations;
 };

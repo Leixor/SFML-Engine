@@ -18,16 +18,24 @@ public:
 	Animation(unsigned int updateRate = 20);
 	~Animation() {}
 
+
 	void update();
 	void update(BaseObject* object);
 
+	// Subanimationhandling
 	template <typename returnType>
 	returnType addSubAnimation(string name, returnType animation, unsigned int time = 0);
 	void addSubAnimation(string name, SubAnimation* animation, unsigned int time = 0);
+
+	// Keyframehandling
 	void addKeyframe(string name, KeyframeAction action, unsigned int time);
 	void removeKeyframe(unsigned int time);
+
+	// Objecthandling
 	void addObject(BaseObject* object);
 	void removeObject(BaseObject* object);
+
+
 private:
 	vector<Keyframe*> Keyframes;
 	vector<BaseObject*> objects;

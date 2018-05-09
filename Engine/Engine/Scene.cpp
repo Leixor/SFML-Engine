@@ -71,3 +71,8 @@ void Scene::updateSync()
 	}
 }
 
+BaseObject * Scene::getObjectByName(string name)
+{
+	return this->objects.get(name);
+}
+

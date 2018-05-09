@@ -128,6 +128,9 @@
     <ClInclude Include="GlobalEventHandler.h" />
     <ClInclude Include="Frameworks.h" />
     <ClInclude Include="Keyframe.h" />
+    <ClInclude Include="MultiObject.h" />
+    <ClInclude Include="PhysicalBaseObject.h" />
+    <ClInclude Include="PhysicalWorld.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneHandler.h" />
     <ClInclude Include="SubAnimation.h" />
@@ -144,6 +147,8 @@
     <ClCompile Include="GlobalEventHandler.cpp" />
     <ClCompile Include="Keyframe.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PhysicalBaseObject.cpp" />
+    <ClCompile Include="PhysicalWorld.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneHandler.cpp" />
     <ClCompile Include="SubAnimation.cpp" />

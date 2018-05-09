@@ -1,6 +1,10 @@
 #pragma once
 #include "Frameworks.h"
 #include "GlobalEnums.h"
+#include "ExternalInclude.h"
+#include "PhysicalBaseObject.h"
+
+class PhysicalBaseObject;
 
 class BaseObject
 {
@@ -13,6 +17,11 @@ public:
 	virtual void handleEvents(LIBRARY_EVENT_CLASS event);
 	virtual void handleInputs();
 
+	virtual void updatePhysicalObject(PhysicalBaseObject* Object);
+	
 	Visibility visibility;
+
+private:
+
 };
 

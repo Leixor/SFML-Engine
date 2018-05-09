@@ -43,7 +43,7 @@ void SubAnimation::resume()
 		this->running = true;
 }
 
-void SubAnimation::increaseTimeAnimation()
+void SubAnimation::increaseTimeCounter()
 {
 	this->timeCount++;
 }

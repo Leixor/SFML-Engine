@@ -43,6 +43,15 @@
     <Filter Include="GameEngine\AnimationStuff\SubAnimation">
       <UniqueIdentifier>{dfb9b154-e466-478d-9534-5d3a8ad74dbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\BaseObject">
+      <UniqueIdentifier>{514be18d-fc86-49a2-b08b-2c5396e4d25d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\PhysicalBaseObject">
+      <UniqueIdentifier>{90da109a-350b-4c30-9933-d7145038e53b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\PhysicalWorld">
+      <UniqueIdentifier>{fe1ecdb5-9906-4feb-9214-8a35b20e4f90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExternalInclude.h">
@@ -50,9 +59,6 @@
     </ClInclude>
     <ClInclude Include="GlobalEnums.h">
       <Filter>HelperClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseObject.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameEngine.h">
       <Filter>GameEngine</Filter>
@@ -93,11 +99,20 @@
     <ClInclude Include="Vector2f.h">
       <Filter>HelperClasses</Filter>
     </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>Object\BaseObject</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicalBaseObject.h">
+      <Filter>Object\PhysicalBaseObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicalWorld.h">
+      <Filter>GameEngine\PhysicalWorld</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BaseObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngine.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
@@ -130,6 +145,15 @@
     </ClCompile>
     <ClCompile Include="SubAnimation.cpp">
       <Filter>GameEngine\AnimationStuff\SubAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>Object\BaseObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalBaseObject.cpp">
+      <Filter>Object\PhysicalBaseObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalWorld.cpp">
+      <Filter>GameEngine\PhysicalWorld</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -23,3 +23,8 @@ void BaseObject::handleEvents(LIBRARY_EVENT_CLASS event)
 void BaseObject::handleInputs()
 {
 }
+
+void BaseObject::updatePhysicalObject(PhysicalBaseObject * Object)
+{
+}
+

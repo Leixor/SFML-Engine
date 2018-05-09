@@ -28,21 +28,6 @@
     <Filter Include="GameEngine\EventHandler">
       <UniqueIdentifier>{4cb524d9-58ee-45a1-9704-5497f1f28329}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\AnimationStuff">
-      <UniqueIdentifier>{1652afb0-9f15-4d7e-a2d7-f6c334f191c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\AnimationStuff\AnimationHandler">
-      <UniqueIdentifier>{874ddf07-e995-4e33-a971-7384ed38fb8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\AnimationStuff\Animation">
-      <UniqueIdentifier>{0a0a4a2f-e98b-4b5f-bf4e-8cc83c21f419}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\AnimationStuff\Keyframe">
-      <UniqueIdentifier>{4fdc1342-ec81-4ecf-8712-b4013ff24fd7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\AnimationStuff\SubAnimation">
-      <UniqueIdentifier>{dfb9b154-e466-478d-9534-5d3a8ad74dbc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\BaseObject">
       <UniqueIdentifier>{514be18d-fc86-49a2-b08b-2c5396e4d25d}</UniqueIdentifier>
     </Filter>
@@ -51,6 +36,21 @@
     </Filter>
     <Filter Include="GameEngine\PhysicalWorld">
       <UniqueIdentifier>{fe1ecdb5-9906-4feb-9214-8a35b20e4f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimationStuff">
+      <UniqueIdentifier>{1652afb0-9f15-4d7e-a2d7-f6c334f191c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimationStuff\AnimationHandler">
+      <UniqueIdentifier>{874ddf07-e995-4e33-a971-7384ed38fb8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimationStuff\Animation">
+      <UniqueIdentifier>{0a0a4a2f-e98b-4b5f-bf4e-8cc83c21f419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimationStuff\Keyframe">
+      <UniqueIdentifier>{4fdc1342-ec81-4ecf-8712-b4013ff24fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimationStuff\SubAnimation">
+      <UniqueIdentifier>{dfb9b154-e466-478d-9534-5d3a8ad74dbc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,16 +85,16 @@
       <Filter>SceneStuff\SceneHandler</Filter>
     </ClInclude>
     <ClInclude Include="AnimationHandler.h">
-      <Filter>GameEngine\AnimationStuff\AnimationHandler</Filter>
+      <Filter>AnimationStuff\AnimationHandler</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
-      <Filter>GameEngine\AnimationStuff\Animation</Filter>
+      <Filter>AnimationStuff\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Keyframe.h">
-      <Filter>GameEngine\AnimationStuff\Keyframe</Filter>
+      <Filter>AnimationStuff\Keyframe</Filter>
     </ClInclude>
     <ClInclude Include="SubAnimation.h">
-      <Filter>GameEngine\AnimationStuff\SubAnimation</Filter>
+      <Filter>AnimationStuff\SubAnimation</Filter>
     </ClInclude>
     <ClInclude Include="Vector2f.h">
       <Filter>HelperClasses</Filter>
@@ -111,6 +111,7 @@
     <ClInclude Include="PhysicalWorld.h">
       <Filter>GameEngine\PhysicalWorld</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp">
@@ -135,16 +136,16 @@
       <Filter>SceneStuff\SceneHandler</Filter>
     </ClCompile>
     <ClCompile Include="AnimationHandler.cpp">
-      <Filter>GameEngine\AnimationStuff\AnimationHandler</Filter>
+      <Filter>AnimationStuff\AnimationHandler</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
-      <Filter>GameEngine\AnimationStuff\Animation</Filter>
+      <Filter>AnimationStuff\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Keyframe.cpp">
-      <Filter>GameEngine\AnimationStuff\Keyframe</Filter>
+      <Filter>AnimationStuff\Keyframe</Filter>
     </ClCompile>
     <ClCompile Include="SubAnimation.cpp">
-      <Filter>GameEngine\AnimationStuff\SubAnimation</Filter>
+      <Filter>AnimationStuff\SubAnimation</Filter>
     </ClCompile>
     <ClCompile Include="BaseObject.cpp">
       <Filter>Object\BaseObject</Filter>
@@ -155,5 +156,6 @@
     <ClCompile Include="PhysicalWorld.cpp">
       <Filter>GameEngine\PhysicalWorld</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationObject.cpp" />
   </ItemGroup>
 </Project>

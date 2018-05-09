@@ -55,7 +55,7 @@ void Animation::update()
 	}
 }
 
-void Animation::update(BaseObject * object)
+void Animation::update(AnimationObject * object)
 {
 	this->update();
 }
@@ -111,12 +111,12 @@ void Animation::removeKeyframe(unsigned int time)
 	}
 }
 
-void Animation::addObject(BaseObject* object)
+void Animation::addObject(AnimationObject* object)
 {
 	this->objects.push_back(object);
 }
 
-void Animation::removeObject(BaseObject* object)
+void Animation::removeObject(AnimationObject* object)
 {
 	for (unsigned int i = 0; i < this->objects.size(); i++)
 	{

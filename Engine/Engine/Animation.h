@@ -1,7 +1,7 @@
 #pragma once
 #include "SubAnimation.h"
 #include "Keyframe.h"
-#include "BaseObject.h"
+#include "AnimationObject.h"
 #include "UnorderedMap.h"
 
 enum KeyframeAction
@@ -20,7 +20,7 @@ public:
 
 
 	void update();
-	void update(BaseObject* object);
+	void update(AnimationObject* object);
 
 	// Subanimationhandling
 	template <typename returnType>
@@ -32,13 +32,13 @@ public:
 	void removeKeyframe(unsigned int time);
 
 	// Objecthandling
-	void addObject(BaseObject* object);
-	void removeObject(BaseObject* object);
+	void addObject(AnimationObject* object);
+	void removeObject(AnimationObject* object);
 
 
 private:
 	vector<Keyframe*> Keyframes;
-	vector<BaseObject*> objects;
+	vector<AnimationObject*> objects;
 	UnorderedMap<string, SubAnimation*> subAnimations;
 	unsigned int updateRateCount;
 };

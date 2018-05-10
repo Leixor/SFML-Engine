@@ -28,5 +28,5 @@ void GlobalEventHandler::callEvent(string name, string args[])
 	GlobalEventHandler::argEventFunctions.get(name)(args);
 }
 
-UnorderedMap<string, function<void(void)>> GlobalEventHandler::eventFunctions;
-UnorderedMap<string, function<void(string[])>> GlobalEventHandler::argEventFunctions;
+SortableMap<string, function<void(void)>> GlobalEventHandler::eventFunctions;
+SortableMap<string, function<void(string[])>> GlobalEventHandler::argEventFunctions;

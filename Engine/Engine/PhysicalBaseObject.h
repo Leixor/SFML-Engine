@@ -10,5 +10,7 @@ public:
 	~PhysicalBaseObject();
 
 	virtual void updateBaseObject(BaseObject* Object);
+
+	Visibility visibility;
 };
 

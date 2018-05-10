@@ -1,5 +1,5 @@
 #pragma once
-#include "UnorderedMap.h"
+#include "SortableMap.h"
 #include "Animation.h"
 
 class AnimationHandler
@@ -18,7 +18,7 @@ public:
 	void removeAnimation(string name);
 
 private:
-	UnorderedMap<string, Animation*> animations;
+	SortableMap<string, Animation*> animations;
 };
 
 

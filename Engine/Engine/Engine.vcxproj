@@ -135,7 +135,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneHandler.h" />
     <ClInclude Include="SubAnimation.h" />
-    <ClInclude Include="UnorderedMap.h" />
+    <ClInclude Include="SortableMap.h" />
     <ClInclude Include="Vector2f.h" />
   </ItemGroup>
   <ItemGroup>

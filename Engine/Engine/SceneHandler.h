@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "UnorderedMap.h"
+#include "SortableMap.h"
 #include "GlobalEnums.h"
 #include "GameEngine.h"
 
@@ -31,7 +31,7 @@ public:
 	static LIBRARY_WINDOW_CLASS* const getWindow();
 	static void createWindow();
 protected:
-	static UnorderedMap<string, Scene*> scenes;
+	static SortableMap<string, Scene*> scenes;
 	static LIBRARY_WINDOW_CLASS* window;
 };
 

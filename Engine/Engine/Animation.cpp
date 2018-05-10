@@ -70,31 +70,30 @@ void Animation::addSubAnimation(string name, SubAnimation* animation, unsigned i
 void Animation::addKeyframe(string name, KeyframeAction action, unsigned int time)
 {
 	Keyframe* frame = nullptr;
-	for (unsigned int i = 0; i < this->Keyframes.size(); i++)
+	
+	if (this->Keyframes.end() != this->Keyframes.find(time))
 	{
-		if (time == this->Keyframes.at(i)->getTimeStamp())
-			frame = this->Keyframes.at(i);
+		frame = this->Keyframes.at(time);
 	}
-
-	if (frame == nullptr)
+	else
 	{
 		frame = new Keyframe(time);
-		this->Keyframes.push_back(frame);
+		this->Keyframes.emplace(time, frame);
 	}
 
 	switch (action)
 	{
 		case ANISTART:
-			frame->addAction(name, [&](string name) { this->subAnimations.get(name)->start(); });
+			frame->addAction([&, name]() { this->subAnimations.get(name)->start(); });
 			break;
 		case ANIPAUSE:
-			frame->addAction(name, [&](string name) {this->subAnimations.get(name)->pause(); });
+			frame->addAction([&, name]() {this->subAnimations.get(name)->pause(); });
 			break;
 		case ANIRESTART:
-			frame->addAction(name, [&](string name) {this->subAnimations.get(name)->restart(); });
+			frame->addAction([&, name]() {this->subAnimations.get(name)->restart(); });
 			break;
 		case ANIRESUME:
-			frame->addAction(name, [&](string name) {this->subAnimations.get(name)->resume(); });
+			frame->addAction([&, name]() {this->subAnimations.get(name)->resume(); });
 			break;
 	}
 }

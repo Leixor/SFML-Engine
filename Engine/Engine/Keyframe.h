@@ -8,13 +8,12 @@ public:
 	Keyframe(unsigned int timeStamp);
 	~Keyframe();
 
-	void addAction(string name, function<void(string)> action);
+	void addAction(function<void(void)> action);
 	void activateKeyframe();
 	unsigned int getTimeStamp();
 
 private:
-	vector<function<void(string)>> actions;
-	vector<string> names;
+	vector<function<void(void)>> actions;
 	unsigned int timeStamp;
 };
 

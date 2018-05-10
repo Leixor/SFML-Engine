@@ -66,9 +66,6 @@
     <ClInclude Include="Frameworks.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="UnorderedMap.h">
-      <Filter>HelperClasses</Filter>
-    </ClInclude>
     <ClInclude Include="ConfigHandler.h">
       <Filter>HelperClasses\ConfigHandler</Filter>
     </ClInclude>
@@ -112,6 +109,9 @@
       <Filter>GameEngine\PhysicalWorld</Filter>
     </ClInclude>
     <ClInclude Include="AnimationObject.h" />
+    <ClInclude Include="SortableMap.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp">

@@ -1,11 +1,11 @@
 #pragma once
 #include "ExternalInclude.h"
-#include "UnorderedMap.h"
+#include "SortableMap.h"
 #include "PhysicalBaseObject.h"
 #include "BaseObject.h"
 #include "SceneHandler.h"
 
-class PhysicalWorld
+class PhysicalWorld 
 {
 public:
 	PhysicalWorld(Scene* scene);
@@ -16,11 +16,13 @@ public:
 	virtual void updatePhysicalWorld();
 	virtual void updateObjects();
 
+	virtual void setupWorld();
+
 	// Set update rate in milliseconds
 	void setUpdateRate(unsigned int updateRate);
 private:
 	unsigned int updateRate;
-	UnorderedMap<string, PhysicalBaseObject*> objects;
+	SortableMap<string, PhysicalBaseObject*> objects;
 	Scene* scene;
 
 };

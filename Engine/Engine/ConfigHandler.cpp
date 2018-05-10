@@ -26,7 +26,7 @@ void ConfigHandler::readComplete()
 	{
 		if (str.at(0) == sectionBegin) {
 			string sectionName = this->RemoveChars(str, string(1, sectionBegin));
-			cfgTable.push(sectionName, new UnorderedMap<string, string>());
+			cfgTable.push(sectionName, new SortableMap<string, string>());
 			while (!endSign)
 			{
 				getline(file, str);
@@ -89,7 +89,7 @@ void ConfigHandler::write(string container, string variableName, string variable
 	// Wenn der Container nicht exestiert auch einen neuen Container samt Variable erstellen
 	if (!writeSuccess)
 	{
-		this->cfgTable.push(container, new UnorderedMap<string, string>);
+		this->cfgTable.push(container, new SortableMap<string, string>);
 		this->cfgTable.get(cfgTable.size() - 1)->push(variableName, variableValue);
 	}
 

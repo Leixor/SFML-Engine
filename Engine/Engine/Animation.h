@@ -2,7 +2,8 @@
 #include "SubAnimation.h"
 #include "Keyframe.h"
 #include "AnimationObject.h"
-#include "UnorderedMap.h"
+#include "SortableMap.h"
+#include <unordered_map>
 
 enum KeyframeAction
 {
@@ -39,7 +40,7 @@ public:
 private:
 	vector<Keyframe*> Keyframes;
 	vector<AnimationObject*> objects;
-	UnorderedMap<string, SubAnimation*> subAnimations;
+	SortableMap<string, SubAnimation*> subAnimations;
 	unsigned int updateRateCount;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "ExternalInclude.h"
-#include "UnorderedMap.h"
+#include "SortableMap.h"
 
 class ConfigHandler
 {
@@ -20,7 +20,7 @@ class ConfigHandler
 		string textFileName;
 
 		// Config wird hier abgespeichert
-		UnorderedMap<string, UnorderedMap<string, string>*> cfgTable;
+		SortableMap<string, SortableMap<string, string>*> cfgTable;
 
 		// Helferfunkion zu rausfiltern der Chars
 		string RemoveChars(const string& source, const string& chars);

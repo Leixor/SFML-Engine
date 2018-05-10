@@ -88,5 +88,5 @@ void SceneHandler::createWindow()
 }
 
 
-UnorderedMap<string, Scene*> SceneHandler::scenes;
+SortableMap<string, Scene*> SceneHandler::scenes;
 LIBRARY_WINDOW_CLASS* SceneHandler::window = LIBRARY_CREATEWINDOW_FUNCTION();

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <random>
 #include <map>
+#include <stdio.h>
 #include "Vector2f.h"
 
 using namespace std;

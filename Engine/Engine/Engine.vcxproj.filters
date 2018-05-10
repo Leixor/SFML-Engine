@@ -52,6 +52,9 @@
     <Filter Include="AnimationStuff\SubAnimation">
       <UniqueIdentifier>{dfb9b154-e466-478d-9534-5d3a8ad74dbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AnimationStuff\AnimationObject">
+      <UniqueIdentifier>{4f048140-c08d-41cb-b5dc-c2f81ac0e8ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExternalInclude.h">
@@ -108,9 +111,11 @@
     <ClInclude Include="PhysicalWorld.h">
       <Filter>GameEngine\PhysicalWorld</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationObject.h" />
     <ClInclude Include="SortableMap.h">
       <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationObject.h">
+      <Filter>AnimationStuff\AnimationObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +161,8 @@
     <ClCompile Include="PhysicalWorld.cpp">
       <Filter>GameEngine\PhysicalWorld</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationObject.cpp" />
+    <ClCompile Include="AnimationObject.cpp">
+      <Filter>AnimationStuff\AnimationObject</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

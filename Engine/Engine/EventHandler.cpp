@@ -20,10 +20,10 @@ void EventHandler::addEvent(string name, function<void(string[])> eventFunction)
 
 void EventHandler::callEvent(string name)
 {
-	this->eventFunctions.get(name)();
+	this->eventFunctions.at(name)();
 }
 
 void EventHandler::callEvent(string name, string args[])
 {
-	this->argEventFunctions.get(name)(args);
+	this->argEventFunctions.at(name)(args);
 }

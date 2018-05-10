@@ -15,7 +15,7 @@ GameEngine::~GameEngine()
 
 void GameEngine::loop()
 {
-	while (LIBRARY_WINDOWOPEN_FUNCTION())
+	while (WINDOWOPEN_FUNCTION())
 	{
 		long long current = getCurrentTime();
 		long long elapsed = current - previous;
@@ -60,7 +60,9 @@ long long GameEngine::getCurrentTime()
 		return ms.count();
 }
 
-LIBRARY_WINDOW_CLASS * GameEngine::createWindow()
+WINDOW_CLASS * const GameEngine::getWindow()
 {
-	return nullptr;
+	return window;
 }
+
+WINDOW_CLASS* GameEngine::window;

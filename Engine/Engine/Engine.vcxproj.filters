@@ -55,6 +55,9 @@
     <Filter Include="AnimationStuff\AnimationObject">
       <UniqueIdentifier>{4f048140-c08d-41cb-b5dc-c2f81ac0e8ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Engine">
+      <UniqueIdentifier>{5a420843-7b5a-4f41-bdf2-016ae5f8d546}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExternalInclude.h">
@@ -62,12 +65,6 @@
     </ClInclude>
     <ClInclude Include="GlobalEnums.h">
       <Filter>HelperClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngine.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Frameworks.h">
-      <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="ConfigHandler.h">
       <Filter>HelperClasses\ConfigHandler</Filter>
@@ -117,11 +114,14 @@
     <ClInclude Include="AnimationObject.h">
       <Filter>AnimationStuff\AnimationObject</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>GameEngine\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSetup.h">
+      <Filter>GameEngine\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
@@ -163,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="AnimationObject.cpp">
       <Filter>AnimationStuff\AnimationObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>GameEngine\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

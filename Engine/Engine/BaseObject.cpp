@@ -16,7 +16,7 @@ void BaseObject::update()
 {
 }
 
-void BaseObject::handleEvents(LIBRARY_EVENT_CLASS event)
+void BaseObject::handleEvents(EVENT_CLASS event)
 {
 }
 
@@ -24,7 +24,7 @@ void BaseObject::handleInputs()
 {
 }
 
-void BaseObject::updatePhysicalObject(PhysicalBaseObject * Object)
+void BaseObject::updatePhysicalObject(PHYSICAL_OBJECT * Object)
 {
 }
 

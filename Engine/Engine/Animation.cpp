@@ -25,14 +25,14 @@ void Animation::update()
 		bool noAnimationRunning = true;
 		for (unsigned int i = 0; i < this->subAnimations.size(); i++)
 		{
-			if (this->subAnimations.get(i)->isRunning())
+			if (this->subAnimations.atIndex(i)->isRunning())
 			{
 				for (unsigned int j = 0; j < this->objects.size(); j++)
 				{
-					this->subAnimations.get(i)->update(this->objects.at(j));
+					this->subAnimations.atIndex(i)->update(this->objects.at(j));
 				}
 
-				this->subAnimations.get(i)->increaseTimeCounter();
+				this->subAnimations.atIndex(i)->increaseTimeCounter();
 				noAnimationRunning = false;
 			}
 		}
@@ -71,7 +71,7 @@ void Animation::addKeyframe(string name, KeyframeAction action, unsigned int tim
 {
 	Keyframe* frame = nullptr;
 	
-	if (this->Keyframes.end() != this->Keyframes.find(time))
+	/*if (this->Keyframes.end() != std::find(this->Keyframes.begin(), this->Keyframes.find(time))
 	{
 		frame = this->Keyframes.at(time);
 	}
@@ -79,21 +79,21 @@ void Animation::addKeyframe(string name, KeyframeAction action, unsigned int tim
 	{
 		frame = new Keyframe(time);
 		this->Keyframes.emplace(time, frame);
-	}
+	}*/
 
 	switch (action)
 	{
 		case ANISTART:
-			frame->addAction([&, name]() { this->subAnimations.get(name)->start(); });
+			frame->addAction([&, name]() { this->subAnimations.at(name)->start(); });
 			break;
 		case ANIPAUSE:
-			frame->addAction([&, name]() {this->subAnimations.get(name)->pause(); });
+			frame->addAction([&, name]() {this->subAnimations.at(name)->pause(); });
 			break;
 		case ANIRESTART:
-			frame->addAction([&, name]() {this->subAnimations.get(name)->restart(); });
+			frame->addAction([&, name]() {this->subAnimations.at(name)->restart(); });
 			break;
 		case ANIRESUME:
-			frame->addAction([&, name]() {this->subAnimations.get(name)->resume(); });
+			frame->addAction([&, name]() {this->subAnimations.at(name)->resume(); });
 			break;
 	}
 }

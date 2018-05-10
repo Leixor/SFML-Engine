@@ -40,7 +40,7 @@ void ConfigHandler::readComplete()
 				string varName = str;
 				getline(ss, str);
 				string varValue = str;
-				cfgTable.get(i)->push(varName, varValue);
+				cfgTable.atIndex(i)->push(varName, varValue);
 			}
 			i++;
 		}
@@ -51,7 +51,7 @@ void ConfigHandler::readComplete()
 
 string ConfigHandler::get(string container, string variableName)
 {
-	return this->cfgTable.get(container)->get(variableName);
+	return this->cfgTable.at(container)->at(variableName);
 }
 
 void ConfigHandler::write(string container, string variableName, string variableValue)
@@ -62,16 +62,16 @@ void ConfigHandler::write(string container, string variableName, string variable
 	for (unsigned int i = 0; i < this->cfgTable.size(); i++)
 	{
 		// Falls er da reinkommt exestiert der Container schonmal
-		if (this->cfgTable.getIterator(i) == container)
+		if (this->cfgTable.findByIndex(i) == container)
 		{
 			// Checken ob die Variable schon exestiert
-			for (unsigned int j = 0; j < this->cfgTable.get(i)->size(); j++)
+			for (unsigned int j = 0; j < this->cfgTable.atIndex(i)->size(); j++)
 			{
 				// Falls er da reinkommt exestiert die Variable schon
-				if (this->cfgTable.get(i)->getIterator(j) == variableName)
+				if (this->cfgTable.atIndex(i)->findByIndex(j) == variableName)
 				{
 					// Variable überschreiben
-					this->cfgTable.get(i)->set(j, variableValue);
+					this->cfgTable.atIndex(i)->atIndex(j) = variableValue;
 					writeSuccess = true;
 					break;
 				}
@@ -79,7 +79,7 @@ void ConfigHandler::write(string container, string variableName, string variable
 			// Variable erstellen falls nicht vorhanden und füllen
 			if (!writeSuccess)
 			{
-				this->cfgTable.get(i)->push(variableName, variableValue);
+				this->cfgTable.atIndex(i)->push(variableName, variableValue);
 				writeSuccess = true;
 				break;
 			}
@@ -90,7 +90,7 @@ void ConfigHandler::write(string container, string variableName, string variable
 	if (!writeSuccess)
 	{
 		this->cfgTable.push(container, new SortableMap<string, string>);
-		this->cfgTable.get(cfgTable.size() - 1)->push(variableName, variableValue);
+		this->cfgTable.atIndex(cfgTable.size() - 1)->push(variableName, variableValue);
 	}
 
 	ofstream myfile(this->textFileName);
@@ -99,12 +99,12 @@ void ConfigHandler::write(string container, string variableName, string variable
 	{
 		myfile << sectionBegin;
 		// Erstmal Containersektion reinschreiben
-		myfile << this->cfgTable.getIterator(i) << "\n";
+		myfile << this->cfgTable.findByIndex(i) << "\n";
 
-		for (unsigned int j = 0; j < this->cfgTable.get(i)->size(); j++)
+		for (unsigned int j = 0; j < this->cfgTable.atIndex(i)->size(); j++)
 		{
 			// Container füllen
-			myfile << this->cfgTable.get(i)->getIterator(j) << ":" << this->cfgTable.get(i)->get(j) << "\n";
+			myfile << this->cfgTable.atIndex(i)->findByIndex(j) << ":" << this->cfgTable.atIndex(i)->atIndex(j) << "\n";
 		}
 		myfile << sectionEnd << "\n";
 	}

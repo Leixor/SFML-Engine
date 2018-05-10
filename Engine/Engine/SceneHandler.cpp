@@ -8,13 +8,13 @@ SceneHandler::~SceneHandler()
 {
 }
 
-void SceneHandler::handleEvents(LIBRARY_EVENT_CLASS eventType)
+void SceneHandler::handleEvents(EVENT_CLASS eventType)
 {
 	for (unsigned int i = 0; i < SceneHandler::scenes.size(); i++)
 	{
-		if (SceneHandler::scenes.get(i)->visibility & EVENTABLE)
+		if (SceneHandler::scenes.atIndex(i)->visibility & EVENTABLE)
 		{
-			SceneHandler::scenes.getContentByPriority(i)->handleEvents(eventType);
+			SceneHandler::scenes.atIndex(i)->handleEvents(eventType);
 		}
 	}
 }
@@ -23,9 +23,9 @@ void SceneHandler::handleInputs()
 {
 	for (unsigned int i = 0; i < SceneHandler::scenes.size(); i++)
 	{
-		if (SceneHandler::scenes.get(i)->visibility & INPUTABLE)
+		if (SceneHandler::scenes.atIndex(i)->visibility & INPUTABLE)
 		{
-			SceneHandler::scenes.getContentByPriority(i)->handleInputs();
+			SceneHandler::scenes.atIndex(i)->handleInputs();
 		}
 	}
 }
@@ -34,9 +34,9 @@ void SceneHandler::update()
 {
 	for (unsigned int i = 0; i < SceneHandler::scenes.size(); i++)
 	{
-		if (SceneHandler::scenes.get(i)->visibility & UPDATABLE)
+		if (SceneHandler::scenes.atIndex(i)->visibility & UPDATABLE)
 		{
-			SceneHandler::scenes.get(i)->updateSync();
+			SceneHandler::scenes.atIndex(i)->updateSync();
 		}
 	}
 }
@@ -45,31 +45,31 @@ void SceneHandler::draw()
 {
 	for (unsigned int i = 0; i < SceneHandler::scenes.size(); i++)
 	{
-		if (SceneHandler::scenes.get(i)->visibility & DRAWABLE)
+		if (SceneHandler::scenes.atIndex(i)->visibility & DRAWABLE)
 		{
-			SceneHandler::scenes.getContentByPriority(i)->draw();
+			SceneHandler::scenes.atIndex(i)->draw();
 		}
 	}
 }
 
 void SceneHandler::deleteScene(string sceneName)
 {
-	SceneHandler::scenes.remove(sceneName);
+	SceneHandler::scenes.removeAt(sceneName);
 }
 
 void SceneHandler::setScenePriority(string name, int priority)
 {
-	SceneHandler::scenes.setPriority(name, priority);
+	SceneHandler::scenes.setIndex(name, priority);
 }
 
 void SceneHandler::setSceneVisibility(string name, Visibility visible)
 {
-	SceneHandler::scenes.get(name)->visibility = visible;
+	SceneHandler::scenes.at(name)->visibility = visible;
 }
 
 Scene * SceneHandler::getSceneByName(string name)
 {
-	return SceneHandler::scenes.get(name);
+	return SceneHandler::scenes.at(name);
 }
 
 bool SceneHandler::sceneExists(string name)
@@ -77,16 +77,6 @@ bool SceneHandler::sceneExists(string name)
 	return SceneHandler::scenes.itemExists(name);
 }
 
-LIBRARY_WINDOW_CLASS * const SceneHandler::getWindow()
-{
-	return SceneHandler::window;
-}
-
-void SceneHandler::createWindow()
-{
-	SceneHandler::window = LIBRARY_CREATEWINDOW_FUNCTION();
-}
 
 
 SortableMap<string, Scene*> SceneHandler::scenes;
-LIBRARY_WINDOW_CLASS* SceneHandler::window = LIBRARY_CREATEWINDOW_FUNCTION();

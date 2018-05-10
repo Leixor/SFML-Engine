@@ -1,10 +1,10 @@
 #pragma once
 #include "EventHandler.h"
 #include "GlobalEventHandler.h"
-#include "BaseObject.h"
 #include "GlobalEnums.h"
-#include "Frameworks.h"
+#include "EngineSetup.h"
 #include "ConfigHandler.h"
+#include BASE_OBJECT_INCLUDE
 
 class Scene
 {
@@ -15,7 +15,7 @@ public:
 	// Game loop functionality
 	virtual void update();
 	virtual void draw();
-	virtual void handleEvents(LIBRARY_EVENT_CLASS eventType);
+	virtual void handleEvents(EVENT_CLASS eventType);
 	virtual void handleInputs();
 
 	// Scene preparation and configuration
@@ -31,12 +31,12 @@ public:
 
 	template <typename returnType>
 	returnType Scene::addObject(string name, returnType toAdd, int priority = -1);
-	BaseObject* getObjectByName(string name);
+	BASE_OBJECT* getObjectByName(string name);
 
 protected:
 	// Time in milliseconds till update
 	unsigned int updateRate;
-	SortableMap<string, BaseObject*> objects;
+	SortableMap<string, BASE_OBJECT*> objects;
 private:
 	// Counter for updateRate
 	unsigned int updateCount;

@@ -1,13 +1,6 @@
 #pragma once
-#include <mutex>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <random>
-#include <map>
-#include <unordered_map>
+#include "ExternalInclude.h"
 
-using namespace std;
 
 template<typename Iterator, typename Content>
 class SortableMap
@@ -15,6 +8,7 @@ class SortableMap
 private:
 	map<Iterator, Content> contents;
 	vector<const Iterator*> priorityIterator;
+	vector<Content*> priorityContent;
 
 public:
 
@@ -39,20 +33,27 @@ public:
 	// Priority
 	void setIndex(Iterator iterator, int index);
 	void updateIndex(int index, int newIndex);
+private:
+	template <typename vectorClass>
+	void moveIndex(vector<vectorClass>& vector, int index, int newIndex);
 };
 
 template<typename Iterator, typename Content>
 inline void SortableMap<Iterator, Content>::push(Iterator iterator, Content content)
 {
 	this->contents.emplace(iterator, content);
-	this->priorityIterator.push_back(&this->contents.find(iterator)->first);
+	auto mapContent = this->contents.find(iterator);
+	this->priorityIterator.push_back(&mapContent->first);
+	this->priorityContent.push_back(&mapContent->second);
 }
 
 template<typename Iterator, typename Content>
 inline void SortableMap<Iterator, Content>::insert(Iterator iterator, Content content, int index)
 {
 	this->contents.emplace(iterator, content);
-	this->priorityIterator.insert(priorityIterator.begin() + index, &contents.find(iterator)->first);
+	auto mapContent = contents.find(iterator);
+	this->priorityIterator.insert(priorityIterator.begin() + index, &mapContent->first);
+	this->priorityContent.insert(priorityContent.begin() + index, &mapContent->second);
 }
 
 template<typename Iterator, typename Content>
@@ -62,10 +63,10 @@ inline void SortableMap<Iterator, Content>::removeAt(Iterator iterator)
 
 	if (contentIterator != contents.end())
 	{
-		const Iterator* iteratorPointer = &contentIterator->first;
+		auto index = this->getIndex(iterator);
+		this->priorityIterator.erase(priorityIterator.begin() + index);
+		this->priorityContent.erase(priorityContent.begin() + index);
 		this->contents.erase(contentIterator);
-		auto pIterator = std::find(priorityIterator.begin(), priorityIterator.end(), iteratorPointer);
-		this->priorityIterator.erase(pIterator);
 	}
 }
 
@@ -74,6 +75,7 @@ inline void SortableMap<Iterator, Content>::removeAtIndex(int index)
 {
 	this->contents.erase(this->findByIndex(index));
 	this->priorityIterator.erase(priorityIterator.begin() + index);
+	this->priorityContent.erase(priorityContent.begin() + index);
 }
 
 template<typename Iterator, typename Content>
@@ -81,6 +83,7 @@ inline void SortableMap<Iterator, Content>::clear()
 {
 	this->contents.clear();
 	this->priorityIterator.clear();
+	this->priorityContent.clear();
 }
 
 template<typename Iterator, typename Content>
@@ -99,7 +102,7 @@ inline Content SortableMap<Iterator, Content>::at(Iterator iterator)
 template<typename Iterator, typename Content>
 inline Content SortableMap<Iterator, Content>::atIndex(int index)
 {
-	return this->contents.at(findByIndex(index));
+	return *this->priorityContent.at(index);
 }
 
 template<typename Iterator, typename Content>
@@ -134,29 +137,35 @@ inline void SortableMap<Iterator, Content>::setIndex(Iterator iterator, int inde
 {
 	int iteratorIndex = getIndex(iterator);
 
-	this->updateIndex(iteratorIndex, index);
+	this->moveIndex(this->priorityIterator, iteratorIndex, index);
+	this->moveIndex(this->priorityContent, iteratorIndex, index);
+
 }
 
 template<typename Iterator, typename Content>
 inline void SortableMap<Iterator, Content>::updateIndex(int index, int newIndex)
 {
-	typename std::vector<const Iterator *>::iterator first, middle, last;
+	this->moveIndex(this->priorityIterator, index, newIndex);
+	this->moveIndex(this->priorityContent, index, newIndex);
+}
+
+template<typename Iterator, typename Content>
+template<typename vectorClass>
+inline void SortableMap<Iterator, Content>::moveIndex(vector<vectorClass>& vector, int index, int newIndex)
+{
+	typename std::vector<vectorClass>::iterator first, middle, last;
 
 	if (index < newIndex)
 	{
-		first = this->priorityIterator.begin() + index;
+		first = vector.begin() + index;
 		middle = first + 1;
-		last = this->priorityIterator.begin() + newIndex;
+		last = vector.begin() + newIndex;
 	}
 	else
 	{
-		first = this->priorityIterator.begin() + newIndex;
-		middle = this->priorityIterator.begin() + index;
+		first = vector.begin() + newIndex;
+		middle = vector.begin() + index;
 		last = middle + 1;
 	}
 	rotate(first, middle, last);
 }
-
-
-
-

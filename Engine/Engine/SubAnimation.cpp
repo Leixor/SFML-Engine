@@ -3,14 +3,14 @@
 SubAnimation::SubAnimation(unsigned int duration, BezierHandles handles)
 	: duration(duration), handles(handles)
 {
-	this->setupSubAnimation();
+	this->setup();
 }
 
 SubAnimation::~SubAnimation()
 {
 }
 
-void SubAnimation::setupSubAnimation()
+void SubAnimation::setup()
 {
 	this->updateCount = float(duration) / this->updateRate;
 	this->factors = getBezierFactors(handles.handleOne, handles.handleTwo, unsigned int(updateCount));

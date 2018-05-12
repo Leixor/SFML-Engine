@@ -16,12 +16,12 @@ public:
 	void setLooping(bool loop = true);
 
 	bool isRunning();
+	virtual void setUpdateRate(unsigned int updateRate);
 protected:
 	bool running;
 	unsigned int updateRate;
 
 	void increaseTimeCount();
-	void setUpdateRate(unsigned int updateRate);
 
 	unsigned int getTime();
 	bool isLooping();

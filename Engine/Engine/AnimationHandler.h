@@ -16,7 +16,6 @@ public:
 
 	Animation* addAnimation(string name, Animation* animation);
 	void removeAnimation(string name);
-
 private:
 	SortableMap<string, Animation*> animations;
 };

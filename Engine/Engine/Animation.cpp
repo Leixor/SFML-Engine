@@ -1,10 +1,15 @@
 #include "Animation.h"
 
-Animation::Animation(unsigned int updateRate)
+Animation::Animation(bool distinct, unsigned int updateRate)
 {
 	this->updateCount = 1;
 	this->lastTimeStamp = 0;
 	this->updateRate = updateRate;
+	this->distinct = distinct;
+}
+
+Animation::Animation(unsigned int updateRate) : Animation(true, updateRate)
+{
 }
 
 void Animation::updateSync()
@@ -31,7 +36,7 @@ void Animation::update(AnimationObject * object)
 	{
 		if (this->subAnimations.atIndex(i)->isRunning())
 		{
-			if (object == nullptr)
+			if (distinct)
 				for(unsigned int k = 0; k < this->objects.size(); k++)
 					this->subAnimations.atIndex(i)->update(this->objects.at(k));
 			else
@@ -60,9 +65,9 @@ void Animation::update(AnimationObject * object)
 	}
 }
 
-Animation* Animation::addAnimation(string name, unsigned int time)
+Animation* Animation::addAnimation(string name, bool distinct, unsigned int time)
 {
-	Animation* animation = new Animation(this->updateRate);
+	Animation* animation = new Animation(distinct, this->updateRate);
 	this->subAnimations.push(name, animation);
 	this->addKeyframe(name, ANISTART, time);
 	return animation;
@@ -127,5 +132,18 @@ void Animation::removeObject(AnimationObject* object)
 		throw;
 
 	this->objects.erase(it);	
+}
+
+void Animation::setUpdateRate(unsigned int updateRate)
+{
+	this->updateRate = updateRate;
+	for (unsigned int i = 0; i < this->subAnimations.size(); i++)
+	{
+		this->subAnimations.atIndex(i)->setUpdateRate(updateRate);
+
+		SubAnimation* tmp = dynamic_cast<SubAnimation*>(this->subAnimations.atIndex(i));
+		if (tmp != nullptr)
+			tmp->setup();
+	}
 }
 

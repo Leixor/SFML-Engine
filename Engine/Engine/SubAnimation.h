@@ -17,7 +17,8 @@ public:
 	// Time duration in millisec
 	SubAnimation(unsigned int duration, BezierHandles handles = BezierHandles(0.1f, 0.1f, 0.9f, 0.9f));
 	~SubAnimation();
-	
+
+	virtual void setup();
 protected:
 	// The Bezierhandles for calculating the steps of the animation
 	BezierHandles handles;
@@ -33,7 +34,6 @@ protected:
 	float median;
 
 	// Setup der Animation
-	virtual void setupSubAnimation();
 	virtual void setupStepSize() = 0;
 private:
 	// Private Helferfunktionen zur Berechnung der Zwischenfaktoren

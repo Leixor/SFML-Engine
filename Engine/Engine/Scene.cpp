@@ -54,10 +54,6 @@ void Scene::draw()
 	}
 }
 
-
-
-
-
 void Scene::updateSync()
 {
 	if (updateCount >= updateRate / MS_PER_UPDATE)

@@ -58,6 +58,9 @@
     <Filter Include="GameEngine\Engine">
       <UniqueIdentifier>{5a420843-7b5a-4f41-bdf2-016ae5f8d546}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AnimationStuff\BaseAnimation">
+      <UniqueIdentifier>{76f307d4-8271-4bb3-974d-6a09755b9689}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExternalInclude.h">
@@ -120,6 +123,9 @@
     <ClInclude Include="EngineSetup.h">
       <Filter>GameEngine\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="BaseAnimation.h">
+      <Filter>AnimationStuff\BaseAnimation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -166,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="GameEngine.cpp">
       <Filter>GameEngine\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAnimation.cpp">
+      <Filter>AnimationStuff\BaseAnimation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

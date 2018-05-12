@@ -2,89 +2,86 @@
 
 Animation::Animation(unsigned int updateRate)
 {
-	this->updateRateCount = 1;
+	this->updateCount = 1;
+	this->lastTimeStamp = 0;
 	this->updateRate = updateRate;
 }
 
-void Animation::update()
+void Animation::updateSync()
 {
-	if (updateRateCount >= updateRate / MS_PER_UPDATE)
+	if (updateCount >= updateRate / MS_PER_UPDATE)
 	{
-		bool behindLastKeyframe = true;
-
-		for (unsigned int i = 0; i < this->Keyframes.size(); i++)
-		{
-			if (this->Keyframes.at(i)->getTimeStamp() == this->getTime())
-			{
-				this->Keyframes.at(i)->activateKeyframe();
-			}
-			if (this->Keyframes.at(i)->getTimeStamp() >= this->getTime())
-				behindLastKeyframe = false;
-		}
-
-		bool noAnimationRunning = true;
-		for (unsigned int i = 0; i < this->subAnimations.size(); i++)
-		{
-			if (this->subAnimations.atIndex(i)->isRunning())
-			{
-				for (unsigned int j = 0; j < this->objects.size(); j++)
-				{
-					this->subAnimations.atIndex(i)->update(this->objects.at(j));
-				}
-
-				this->subAnimations.atIndex(i)->increaseTimeCounter();
-				noAnimationRunning = false;
-			}
-		}
-
-		if (behindLastKeyframe && noAnimationRunning)
-			if (this->loop)
-			{
-				this->timeCount = 0;
-				this->update();
-			}
-			else
-				this->running = false;
-		else
-			this->timeCount++;
-		updateRateCount = 1;
+		this->update(nullptr);
+		updateCount = 1;
 	}
 	else
 	{
-		updateRateCount++;
+		updateCount++;
 	}
 }
 
 void Animation::update(AnimationObject * object)
 {
-	this->update();
+	unsigned int currentTime = this->getTime();
+
+	if (keyframes.itemExists(currentTime))
+		this->keyframes.at(currentTime)->activateKeyframe();
+
+	for (unsigned int i = 0; i < this->subAnimations.size(); i++)
+	{
+		if (this->subAnimations.atIndex(i)->isRunning())
+		{
+			if (object == nullptr)
+				for(unsigned int k = 0; k < this->objects.size(); k++)
+					this->subAnimations.atIndex(i)->update(this->objects.at(k));
+			else
+				this->subAnimations.atIndex(i)->update(object);
+		}
+	}
+
+	this->increaseTimeCount();
+
+	//schaut ob die animation fertig ist
+	if (this->getTime() > this->lastTimeStamp)
+	{
+		bool finished = true;
+		for (unsigned int i = 0; i < this->subAnimations.size(); i++)
+		{
+			if (this->subAnimations.atIndex(i)->isRunning())
+				finished = false;
+		}
+		if (finished)
+		{
+			if (this->isLooping())
+				this->start(true);
+			else
+				this->running = false;
+		}
+	}
 }
 
-void Animation::addSubAnimation(string name, SubAnimation* animation, unsigned int time)
+Animation* Animation::addAnimation(string name, unsigned int time)
 {
-	animation->setUpdateRate(this->updateRate);
+	Animation* animation = new Animation(this->updateRate);
 	this->subAnimations.push(name, animation);
 	this->addKeyframe(name, ANISTART, time);
+	return animation;
 }
 
 void Animation::addKeyframe(string name, KeyframeAction action, unsigned int time)
 {
-	Keyframe* frame = nullptr;
-	
-	/*if (this->Keyframes.end() != std::find(this->Keyframes.begin(), this->Keyframes.find(time))
-	{
-		frame = this->Keyframes.at(time);
-	}
-	else
-	{
-		frame = new Keyframe(time);
-		this->Keyframes.emplace(time, frame);
-	}*/
+	if (this->lastTimeStamp < time)
+		this->lastTimeStamp = time;
+
+	if (!this->keyframes.itemExists(time))
+		this->keyframes.push(time, new Keyframe());
+
+	Keyframe* frame = this->keyframes.at(time);
 
 	switch (action)
 	{
 		case ANISTART:
-			frame->addAction([&, name]() { this->subAnimations.at(name)->start(); });
+			frame->addAction([&, name]() {this->subAnimations.at(name)->start(); });
 			break;
 		case ANIPAUSE:
 			frame->addAction([&, name]() {this->subAnimations.at(name)->pause(); });
@@ -95,19 +92,26 @@ void Animation::addKeyframe(string name, KeyframeAction action, unsigned int tim
 		case ANIRESUME:
 			frame->addAction([&, name]() {this->subAnimations.at(name)->resume(); });
 			break;
+		case ANILOOPING:
+			frame->addAction([&, name]() {this->subAnimations.at(name)->setLooping(); });
 	}
 }
 
 void Animation::removeKeyframe(unsigned int time)
 {
-	for (unsigned int i = 0; i < this->Keyframes.size(); i++)
+	if (this->lastTimeStamp == time)
 	{
-		if (time == this->Keyframes.at(i)->getTimeStamp())
+		unsigned int newLastTimeStamp = 0;
+		for (unsigned int i = 0; i < this->keyframes.size(); i++)
 		{
-			this->Keyframes.erase(this->Keyframes.begin() + i);
-			return;
+			unsigned int tmp = this->keyframes.findByIndex(i);
+			if (newLastTimeStamp < tmp)
+				newLastTimeStamp = tmp;
 		}
+		this->lastTimeStamp = newLastTimeStamp;
 	}
+
+	this->keyframes.removeAt(time);
 }
 
 void Animation::addObject(AnimationObject* object)
@@ -117,13 +121,11 @@ void Animation::addObject(AnimationObject* object)
 
 void Animation::removeObject(AnimationObject* object)
 {
-	for (unsigned int i = 0; i < this->objects.size(); i++)
-	{
-		if (this->objects.at(i) == object)
-		{
-			this->objects.erase(objects.begin() + i);
-			return;
-		}
-	}
+	auto it = find(this->objects.begin(), this->objects.end(), object);
+
+	if (it == this->objects.end())
+		throw;
+
+	this->objects.erase(it);	
 }
 

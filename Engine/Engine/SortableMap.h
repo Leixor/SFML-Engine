@@ -24,7 +24,7 @@ public:
 	void removeAt(Iterator iterator);
 	void removeAtIndex(int index);
 	void clear();
-	unsigned int size();
+	size_t size();
 
 	// Setters and getters
 	Content at(Iterator iterator);
@@ -84,11 +84,10 @@ inline void SortableMap<Iterator, Content>::clear()
 }
 
 template<typename Iterator, typename Content>
-inline unsigned int SortableMap<Iterator, Content>::size()
+inline size_t SortableMap<Iterator, Content>::size()
 {
 	return this->contents.size();
 }
-
 
 template<typename Iterator, typename Content>
 inline Content SortableMap<Iterator, Content>::at(Iterator iterator)
@@ -127,8 +126,6 @@ inline bool SortableMap<Iterator, Content>::itemExists(Iterator iterator)
 	return this->contents.end() != this->contents.find(iterator);
 }
 
-
-
 template<typename Iterator, typename Content>
 inline void SortableMap<Iterator, Content>::setIndex(Iterator iterator, int index)
 {
@@ -156,7 +153,3 @@ inline void SortableMap<Iterator, Content>::updateIndex(int index, int newIndex)
 	}
 	rotate(first, middle, last);
 }
-
-
-
-

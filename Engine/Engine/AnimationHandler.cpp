@@ -8,13 +8,18 @@ AnimationHandler::~AnimationHandler()
 {
 }
 
-void AnimationHandler::update()
+bool AnimationHandler::update()
 {
+	bool finished = true;
 	for (unsigned int i = 0; i < this->animations.size(); i++)
 	{
 		if (this->animations.atIndex(i)->isRunning())
-			this->animations.atIndex(i)->update();
+		{
+			this->animations.atIndex(i)->updateSync();
+			finished = false;
+		}
 	}
+	return finished;
 }
 
 void AnimationHandler::run(string name, bool loop)

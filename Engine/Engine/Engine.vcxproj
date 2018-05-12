@@ -120,6 +120,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationHandler.h" />
     <ClInclude Include="AnimationObject.h" />
+    <ClInclude Include="BaseAnimation.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="ConfigHandler.h" />
     <ClInclude Include="EventHandler.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationHandler.cpp" />
     <ClCompile Include="AnimationObject.cpp" />
+    <ClCompile Include="BaseAnimation.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="ConfigHandler.cpp" />
     <ClCompile Include="EventHandler.cpp" />

@@ -8,14 +8,22 @@ Keyframe::~Keyframe()
 {
 }
 
-void Keyframe::addAction(function<void(void)> action)
+void Keyframe::addAction(function<void(void)> action, string name)
 {
-	this->actions.push_back(action);
+	if (name == "")
+		this->actions.emplace(actions.size(), action);
+	else
+		this->actions.emplace(name, action);
+}
+
+void Keyframe::removeAction(string name)
+{
+	this->actions.erase(name);
 }
 
 void Keyframe::activateKeyframe()
 {
-	for (unsigned int i = 0; i < this->actions.size(); i++)
-		this->actions.at(i)();
+	for (auto it = actions.begin(); it != actions.end(); it++)
+		this->actions.at(it->first)();
 }
 

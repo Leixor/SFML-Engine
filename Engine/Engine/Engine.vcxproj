@@ -121,6 +121,7 @@
     <ClInclude Include="AnimationHandler.h" />
     <ClInclude Include="AnimationObject.h" />
     <ClInclude Include="BaseAnimation.h" />
+    <ClInclude Include="BaseAnimationContainer.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="ConfigHandler.h" />
     <ClInclude Include="EventHandler.h" />
@@ -130,6 +131,7 @@
     <ClInclude Include="GlobalEventHandler.h" />
     <ClInclude Include="EngineSetup.h" />
     <ClInclude Include="Keyframe.h" />
+    <ClInclude Include="KeyframeHandler.h" />
     <ClInclude Include="MultiObject.h" />
     <ClInclude Include="PhysicalBaseObject.h" />
     <ClInclude Include="PhysicalWorld.h" />
@@ -144,12 +146,14 @@
     <ClCompile Include="AnimationHandler.cpp" />
     <ClCompile Include="AnimationObject.cpp" />
     <ClCompile Include="BaseAnimation.cpp" />
+    <ClCompile Include="BaseAnimationContainer.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="ConfigHandler.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GlobalEventHandler.cpp" />
     <ClCompile Include="Keyframe.cpp" />
+    <ClCompile Include="KeyframeHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PhysicalBaseObject.cpp" />
     <ClCompile Include="PhysicalWorld.cpp" />

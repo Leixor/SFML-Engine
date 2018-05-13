@@ -1,5 +1,13 @@
 #pragma once
 #include "ExternalInclude.h"
+enum KeyframeAction
+{
+	ANISTART = 1,
+	ANIRESUME = 2,
+	ANIPAUSE = 4,
+	ANIRESTART = 8,
+	ANILOOPING = 16
+};
 
 
 class Keyframe
@@ -7,11 +15,12 @@ class Keyframe
 public:
 	Keyframe();
 	~Keyframe();
-
-	void addAction(function<void(void)> action);
 	void activateKeyframe();
+	void addAction(function<void(void)> action, string name = "");
+	void removeAction(string name);
+
 private:
-	vector<function<void(void)>> actions;
+	map<string, function<void(void)>> actions;
 };
 
 

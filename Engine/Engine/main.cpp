@@ -4,6 +4,36 @@
 #include "GameEngine.h"
 #include "AnimationHandler.h"
 
+class A
+{
+public:
+	function<void(void)> action;
+};
+
+class C
+{
+
+};
+
+class B
+{
+public:
+	A* a;
+
+	void machAction()
+	{
+		a = new A();
+		a->action = [&]() {this->dieAction();};
+		a->action();
+	}
+
+protected:
+	void dieAction()
+	{
+		printf("%d", )
+	}
+};
+
 int main()
 {
 	AnimationHandler handler;

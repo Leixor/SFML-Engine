@@ -7,7 +7,7 @@ public:
 	BaseAnimation();
 	~BaseAnimation();
 
-	virtual void update(AnimationObject* object) = 0;
+	virtual void update(vector<AnimationObject*>* objects) = 0;
 
 	void start(bool loop = false);
 	void restart();

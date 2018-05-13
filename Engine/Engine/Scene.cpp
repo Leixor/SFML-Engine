@@ -10,13 +10,13 @@ Scene::~Scene()
 {
 }
 
-void Scene::handleEvents(LIBRARY_EVENT_CLASS eventType)
+void Scene::handleEvents(EVENT_CLASS eventType)
 {
 	for (unsigned int i = 0; i < this->objects.size(); i++)
 	{
-		if (this->objects.get(i)->visibility & EVENTABLE)
+		if (this->objects.atIndex(i)->visibility & EVENTABLE)
 		{
-			this->objects.getContentByPriority(i)->handleEvents(eventType);
+			this->objects.atIndex(i)->handleEvents(eventType);
 		}
 	}
 }
@@ -25,9 +25,9 @@ void Scene::handleInputs()
 {
 	for (unsigned int i = 0; i < this->objects.size(); i++)
 	{
-		if (this->objects.get(i)->visibility & INPUTABLE)
+		if (this->objects.atIndex(i)->visibility & INPUTABLE)
 		{
-			this->objects.getContentByPriority(i)->handleInputs();
+			this->objects.atIndex(i)->handleInputs();
 		}
 	}
 }
@@ -36,9 +36,9 @@ void Scene::update()
 {
 	for (unsigned int i = 0; i < this->objects.size(); i++)
 	{
-		if (this->objects.get(i)->visibility & UPDATABLE)
+		if (this->objects.atIndex(i)->visibility & UPDATABLE)
 		{
-			this->objects.getContentByPriority(i)->update();
+			this->objects.atIndex(i)->update();
 		}
 	}
 }
@@ -47,16 +47,12 @@ void Scene::draw()
 {
 	for (unsigned int i = 0; i < this->objects.size(); i++)
 	{
-		if (this->objects.get(i)->visibility & DRAWABLE)
+		if (this->objects.atIndex(i)->visibility & DRAWABLE)
 		{
-			this->objects.getContentByPriority(i)->draw();
+			this->objects.atIndex(i)->draw();
 		}
 	}
 }
-
-
-
-
 
 void Scene::updateSync()
 {
@@ -73,6 +69,6 @@ void Scene::updateSync()
 
 BaseObject * Scene::getObjectByName(string name)
 {
-	return this->objects.get(name);
+	return this->objects.at(name);
 }
 

@@ -12,7 +12,7 @@ public:
 	~SceneHandler();
 
 
-	static void handleEvents(LIBRARY_EVENT_CLASS eventType);
+	static void handleEvents(EVENT_CLASS eventType);
 	static void handleInputs();
 	static void update();
 	static void draw();
@@ -28,11 +28,9 @@ public:
 
 	static Scene* getSceneByName(string name);
 	static bool sceneExists(string name);
-	static LIBRARY_WINDOW_CLASS* const getWindow();
-	static void createWindow();
 protected:
 	static SortableMap<string, Scene*> scenes;
-	static LIBRARY_WINDOW_CLASS* window;
+	
 };
 
 template<typename SceneType>

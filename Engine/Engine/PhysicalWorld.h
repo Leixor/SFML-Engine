@@ -1,28 +1,31 @@
 #pragma once
 #include "ExternalInclude.h"
 #include "SortableMap.h"
-#include "PhysicalBaseObject.h"
-#include "BaseObject.h"
 #include "SceneHandler.h"
+#include PHYSICAL_OBJECT_INCLUDE
+#include PHYSICAL_WORLD_INCLUDE
 
-class PhysicalWorld 
+class PhysicalWorld  : public PHYSICAL_WORLD_CLASS
 {
 public:
 	PhysicalWorld(Scene* scene);
 	~PhysicalWorld();
 
-	PhysicalBaseObject* addPhysicalObject(string baseObjectName, PhysicalBaseObject* object);
+	virtual void setupWorld() = 0;
+	virtual void updatePhysicalWorld() = 0;
 
-	virtual void updatePhysicalWorld();
+	PHYSICAL_OBJECT* addPhysicalObject(string baseObjectName, PHYSICAL_OBJECT* object);
+
+	
 	virtual void updateObjects();
 
-	virtual void setupWorld();
+	
 
 	// Set update rate in milliseconds
 	void setUpdateRate(unsigned int updateRate);
 private:
 	unsigned int updateRate;
-	SortableMap<string, PhysicalBaseObject*> objects;
+	SortableMap<BASE_OBJECT*, PHYSICAL_OBJECT*> objects;
 	Scene* scene;
 
 };

@@ -1,8 +1,7 @@
 #include "Keyframe.h"
 
-Keyframe::Keyframe(unsigned int timeStamp)
+Keyframe::Keyframe()
 {
-	this->timeStamp = timeStamp;
 }
 
 Keyframe::~Keyframe()
@@ -18,10 +17,5 @@ void Keyframe::activateKeyframe()
 {
 	for (unsigned int i = 0; i < this->actions.size(); i++)
 		this->actions.at(i)();
-}
-
-unsigned int Keyframe::getTimeStamp()
-{
-	return this->timeStamp;
 }
 

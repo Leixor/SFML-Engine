@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ExternalInclude.h"
-#include "Frameworks.h"
+#include "EngineSetup.h"
 #include "SceneHandler.h"
 
 
@@ -21,9 +21,11 @@ public:
 
 	long long getCurrentTime();
 
-	static LIBRARY_WINDOW_CLASS* createWindow();
+	virtual void createWindow() = 0;
 
+	static WINDOW_CLASS* const getWindow();
 
+	static WINDOW_CLASS* window;
 	long long lag;
 	long long previous;
 };

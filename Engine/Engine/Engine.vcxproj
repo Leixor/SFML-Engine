@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -120,6 +120,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationHandler.h" />
     <ClInclude Include="AnimationObject.h" />
+    <ClInclude Include="BaseAnimation.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="ConfigHandler.h" />
     <ClInclude Include="EventHandler.h" />
@@ -127,7 +128,7 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GlobalEnums.h" />
     <ClInclude Include="GlobalEventHandler.h" />
-    <ClInclude Include="Frameworks.h" />
+    <ClInclude Include="EngineSetup.h" />
     <ClInclude Include="Keyframe.h" />
     <ClInclude Include="MultiObject.h" />
     <ClInclude Include="PhysicalBaseObject.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationHandler.cpp" />
     <ClCompile Include="AnimationObject.cpp" />
+    <ClCompile Include="BaseAnimation.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="ConfigHandler.cpp" />
     <ClCompile Include="EventHandler.cpp" />

@@ -8,7 +8,7 @@ public:
 	AnimationHandler();
 	~AnimationHandler();
 
-	void update();
+	bool update();
 	void run(string name, bool loop = false);
 	void restart(string name);
 	void resume(string name);
@@ -16,7 +16,6 @@ public:
 
 	Animation* addAnimation(string name, Animation* animation);
 	void removeAnimation(string name);
-
 private:
 	SortableMap<string, Animation*> animations;
 };

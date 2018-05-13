@@ -9,29 +9,27 @@ PhysicalWorld::~PhysicalWorld()
 {
 }
 
-PhysicalBaseObject* PhysicalWorld::addPhysicalObject(string baseObjectName, PhysicalBaseObject* object)
+PhysicalBaseObject* PhysicalWorld::addPhysicalObject(string baseObjectName, PHYSICAL_OBJECT* object)
 {
-	this->objects.push(baseObjectName, object);
+	this->objects.push(scene->getObjectByName(baseObjectName), object);
 	return object;
 }
 
-void PhysicalWorld::updatePhysicalWorld()
-{
-}
 
 void PhysicalWorld::updateObjects()
 {
-	BaseObject* baseObject;
-	PhysicalBaseObject* physicalObject;
+	BASE_OBJECT* baseObject;
+	PHYSICAL_OBJECT* physicalObject;
 	for (int i = 0; i < objects.size(); i++)
 	{
-		baseObject = scene->getObjectByName(this->objects.getIterator(i));
-		physicalObject = this->objects.get(i);
+		baseObject = this->objects.findByIndex(i);
+		physicalObject = this->objects.atIndex(i);
 
 		baseObject->updatePhysicalObject(physicalObject);
 		physicalObject->updateBaseObject(baseObject);
 	}
 }
+
 
 void PhysicalWorld::setUpdateRate(unsigned int updateRate)
 {

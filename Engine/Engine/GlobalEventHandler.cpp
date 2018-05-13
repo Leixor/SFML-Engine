@@ -20,12 +20,12 @@ void GlobalEventHandler::addEvent(string name, function<void(string[])> eventFun
 
 void GlobalEventHandler::callEvent(string name)
 {
-	GlobalEventHandler::eventFunctions.get(name)();
+	GlobalEventHandler::eventFunctions.at(name)();
 }
 
 void GlobalEventHandler::callEvent(string name, string args[])
 {
-	GlobalEventHandler::argEventFunctions.get(name)(args);
+	GlobalEventHandler::argEventFunctions.at(name)(args);
 }
 
 SortableMap<string, function<void(void)>> GlobalEventHandler::eventFunctions;

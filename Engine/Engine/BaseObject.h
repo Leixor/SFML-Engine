@@ -1,10 +1,9 @@
 #pragma once
-#include "Frameworks.h"
 #include "GlobalEnums.h"
-#include "ExternalInclude.h"
-#include "PhysicalBaseObject.h"
+#include "EngineSetup.h"
+#include PHYSICAL_OBJECT_INCLUDE
 
-class PhysicalBaseObject;
+class PHYSICAL_OBJECT;
 
 class BaseObject
 {
@@ -14,10 +13,10 @@ public:
 
 	virtual void draw();
 	virtual void update();
-	virtual void handleEvents(LIBRARY_EVENT_CLASS event);
+	virtual void handleEvents(EVENT_CLASS event);
 	virtual void handleInputs();
 
-	virtual void updatePhysicalObject(PhysicalBaseObject* Object);
+	virtual void updatePhysicalObject(PHYSICAL_OBJECT* Object);
 	
 	Visibility visibility;
 

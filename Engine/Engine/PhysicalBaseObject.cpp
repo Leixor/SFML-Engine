@@ -11,7 +11,7 @@ PhysicalBaseObject::~PhysicalBaseObject()
 {
 }
 
-void PhysicalBaseObject::updateBaseObject(BaseObject * Object)
+void PhysicalBaseObject::updateBaseObject(BASE_OBJECT * Object)
 {
 }
 

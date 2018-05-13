@@ -1,17 +1,34 @@
 #pragma once
 #include "ExternalInclude.h"
 #include "SortableMap.h"
-
-bool pollEvent()
-{
-	return true;
-}
+#include "GameEngine.h"
+#include "AnimationHandler.h"
 
 int main()
 {
-	SortableMap<string, int> map;
-	map.push("Hallo", 2);
-	map.push("Tschuess", 3);
-	map.remove("Hallo");
+	AnimationHandler handler;
+	Animation* tmp = new Animation();
+	tmp->addObject(new AnimationObject());
+
+	Animation* tmp2 = tmp->addAnimation("tmp2", false);
+	tmp2->addAnimation("tmp3", false);
+	tmp2->addKeyframe("tmp3", ANILOOPING, 0);
+	tmp2->addKeyframe("tmp3", ANIPAUSE, 100);
+
+	tmp->addKeyframe("tmp2", ANISTART, 200);
+	tmp->addKeyframe("tmp2", ANILOOPING, 200);
+	tmp->addKeyframe("tmp2", ANIPAUSE, 400);
+	tmp->setUpdateRate(20);
+
+	handler.addAnimation("tmp", tmp);
+	handler.run("tmp");
+	for (int i = 0; i < 1000; i++)
+	{
+		if (handler.update())
+		{
+			printf("%d", i);
+			int k = 0;
+		}
+	}
 	return 0;
 }

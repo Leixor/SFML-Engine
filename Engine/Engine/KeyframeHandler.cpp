@@ -41,7 +41,7 @@ void KeyframeHandler::activateKeyframe(unsigned int time)
 	this->keyframes.at(time)->activateKeyframe();
 }
 
-bool KeyframeHandler::exists(unsigned int time)
+bool KeyframeHandler::keyframeExists(unsigned int time)
 {
 	return this->keyframes.find(time) != this->keyframes.end();
 }

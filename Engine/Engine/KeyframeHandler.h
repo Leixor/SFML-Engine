@@ -12,7 +12,7 @@ public:
 	void removeKeyframeAction(unsigned int time, string actionName);
 	void activateKeyframe(unsigned int time);
 
-	bool exists(unsigned int time);
+	bool keyframeExists(unsigned int time);
 	bool behindLastKeyframe(unsigned int time);
 private:
 	map<unsigned int, Keyframe*> keyframes;

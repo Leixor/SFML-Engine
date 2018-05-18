@@ -12,7 +12,7 @@ void BaseAnimationContainer::update(vector<AnimationObject*>* objects)
 {
 	unsigned int currentTime = this->getTime();
 
-	if (this->exists(currentTime))
+	if (this->keyframeExists(currentTime))
 		this->activateKeyframe(currentTime);
 
 	for (unsigned int i = 0; i < this->subAnimations.size(); i++)

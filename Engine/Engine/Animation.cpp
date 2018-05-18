@@ -23,7 +23,7 @@ void Animation::update(vector<AnimationObject*>* objects)
 {
 	unsigned int currentTime = this->getTime();
 
-	if (this->exists(currentTime))
+	if (this->keyframeExists(currentTime))
 		this->activateKeyframe(currentTime);
 
 	for (unsigned int i = 0; i < this->subAnimations.size(); i++)
@@ -33,8 +33,6 @@ void Animation::update(vector<AnimationObject*>* objects)
 			this->subAnimations.atIndex(i)->update(&this->objects);
 		}
 	}
-
-	this->increaseTimeCount();
 
 	//schaut ob die animation fertig ist
 	if (this->behindLastKeyframe(this->getTime()))
@@ -53,6 +51,8 @@ void Animation::update(vector<AnimationObject*>* objects)
 				this->running = false;
 		}
 	}
+
+	this->increaseTimeCount();
 }
 
 void Animation::addObject(AnimationObject* object)

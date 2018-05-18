@@ -10,16 +10,23 @@ int main()
 	Animation* tmp = new Animation();
 	tmp->addObject(new AnimationObject());
 
-	tmp->addSubAnimation("tmp2", new Animation(), 0);
-	tmp->addSubAnimation("tmp3", new Animation(), 100);
-	tmp->addKeyframe(0, [&] {tmp->getSubAnimation("tmp2")->setLooping(true); });
-	tmp->addKeyframe(200, [&] {tmp->getSubAnimation("tmp2")->pause(); });
-	tmp->addKeyframe(100, [&] {tmp->getSubAnimation("tmp3")->setLooping(true); });
-	tmp->addKeyframe(600, [&] {tmp->getSubAnimation("tmp3")->pause(); });
-	tmp->setUpdateRate(10);
+	Animation* bsp1 = tmp->addSubAnimation("bsp1", new Animation(), 100);
+	bsp1->addObject(new AnimationObject());
+
+	tmp->addKeyframe(100, [&] {	tmp->getSubAnimation("bsp1")->setLooping(true); });
+	tmp->addKeyframe(600, [&] {tmp->getSubAnimation("bsp1")->pause(); });
+
+	Animation* bsp2 = new Animation(*bsp1);
+	bsp1->addSubAnimation("bsp2", bsp2);
+
+	bsp1->addKeyframe(0, [&] {bsp1->getSubAnimation("bsp2")->setLooping(true); });
+	bsp1->addKeyframe(800, [&] {bsp1->getSubAnimation("bsp2")->pause(); });
+
+	tmp->setUpdateRate(100);
 
 	handler.addAnimation("tmp", tmp);
 	handler.run("tmp");
+
 	for (int i = 0; i < 1000; i++)
 	{
 		if (handler.update())

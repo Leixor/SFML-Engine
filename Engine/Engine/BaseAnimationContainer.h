@@ -4,7 +4,7 @@
 #include "KeyframeHandler.h"
 #include "SortableMap.h"
 
-class BaseAnimationContainer : public BaseAnimation
+class BaseAnimationContainer : public BaseAnimation, public KeyframeHandler
 {
 public:
 	BaseAnimationContainer();
@@ -15,9 +15,7 @@ public:
 	template <typename returnType>
 	returnType addSubAnimation(string name, returnType animation, unsigned int startTime = 0);
 
-	SortableMap<string, BaseAnimation*>* const getSubAnimations();
-
-	KeyframeHandler keyframeHandler;
+	BaseAnimation* const getSubAnimation(string name);
 protected:
 	SortableMap<string, BaseAnimation*> subAnimations;
 };
@@ -27,6 +25,6 @@ inline returnType BaseAnimationContainer::addSubAnimation(string name, returnTyp
 {
 	animation->setUpdateRate(this->updateRate);
 	this->subAnimations.push(name, animation);
-	this->keyframeHandler.addKeyframe(startTime, [&, name] { this->subAnimations.at(name)->start(); }, name);
+	this->addKeyframe(startTime, [&, name] { this->subAnimations.at(name)->start(); }, name);
 	return animation;
 }

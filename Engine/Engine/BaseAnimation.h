@@ -17,7 +17,7 @@ public:
 	void setLooping(bool loop = true);
 
 	bool isRunning();
-	virtual void setUpdateRate(unsigned int updateRate);
+	virtual void setUpdateRate(unsigned int updateRate) = 0;
 protected:
 	bool running;
 	unsigned int updateRate;

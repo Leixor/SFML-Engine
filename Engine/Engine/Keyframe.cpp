@@ -11,7 +11,7 @@ Keyframe::~Keyframe()
 void Keyframe::addAction(function<void(void)> action, string name)
 {
 	if (name == "")
-		this->actions.emplace(actions.size(), action);
+		this->actions.emplace(to_string(this->actions.size()), action);
 	else
 		this->actions.emplace(name, action);
 }

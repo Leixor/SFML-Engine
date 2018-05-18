@@ -53,11 +53,6 @@ void BaseAnimation::increaseTimeCount()
 	this->timeCount++;
 }
 
-void BaseAnimation::setUpdateRate(unsigned int updateRate)
-{
-	this->updateRate = updateRate;
-}
-
 unsigned int BaseAnimation::getTime()
 {
 	return this->timeCount * this->updateRate;

@@ -11,9 +11,12 @@ int main()
 	tmp->addObject(new AnimationObject());
 
 	tmp->addSubAnimation("tmp2", new Animation(), 0);
-	tmp->keyframeHandler.addKeyframe(0, [&] {tmp->getSubAnimations()->at("tmp2")->setLooping(true); });
-	tmp->keyframeHandler.addKeyframe(100, [&] {tmp->getSubAnimations()->at("tmp2")->pause(); });
-	//tmp->setUpdateRate(20);
+	tmp->addSubAnimation("tmp3", new Animation(), 100);
+	tmp->addKeyframe(0, [&] {tmp->getSubAnimation("tmp2")->setLooping(true); });
+	tmp->addKeyframe(200, [&] {tmp->getSubAnimation("tmp2")->pause(); });
+	tmp->addKeyframe(100, [&] {tmp->getSubAnimation("tmp3")->setLooping(true); });
+	tmp->addKeyframe(600, [&] {tmp->getSubAnimation("tmp3")->pause(); });
+	tmp->setUpdateRate(10);
 
 	handler.addAnimation("tmp", tmp);
 	handler.run("tmp");

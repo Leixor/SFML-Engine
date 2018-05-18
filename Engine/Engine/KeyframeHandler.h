@@ -15,7 +15,7 @@ public:
 	bool exists(unsigned int time);
 	bool behindLastKeyframe(unsigned int time);
 private:
-	map<unsigned int, Keyframe*> keyframeHandler;
+	map<unsigned int, Keyframe*> keyframes;
 	unsigned int lastTimeStamp;
 };
 

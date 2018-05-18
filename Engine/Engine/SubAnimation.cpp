@@ -19,6 +19,12 @@ void SubAnimation::setup()
 	this->setupStepSize();
 }
 
+void SubAnimation::setUpdateRate(unsigned int updateRate)
+{
+	this->updateRate = updateRate;
+	this->setup();
+}
+
 vector<float> SubAnimation::getBezierFactors(Vector2f P1, Vector2f P2, unsigned int steps)
 {
 	vector<float> factors;

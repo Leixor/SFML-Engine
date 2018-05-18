@@ -19,6 +19,7 @@ public:
 	~SubAnimation();
 
 	virtual void setup();
+	virtual void setUpdateRate(unsigned int updateRate);
 protected:
 	// The Bezierhandles for calculating the steps of the animation
 	BezierHandles handles;

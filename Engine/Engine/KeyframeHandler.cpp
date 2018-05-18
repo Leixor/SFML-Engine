@@ -13,10 +13,10 @@ void KeyframeHandler::addKeyframe(unsigned int time, function<void(void)> action
 	if (this->lastTimeStamp < time)
 		this->lastTimeStamp = time;
 
-	if (this->keyframeHandler.find(time) != this->keyframeHandler.end())
-		this->keyframeHandler.emplace(time, new Keyframe());
+	if (this->keyframes.find(time) == this->keyframes.end())
+		this->keyframes.emplace(time, new Keyframe());
 
-	Keyframe* frame = this->keyframeHandler.at(time);
+	Keyframe* frame = this->keyframes.at(time);
 	frame->addAction(action, actionName);
 }
 
@@ -24,29 +24,29 @@ void KeyframeHandler::removeKeyframe(unsigned int time)
 {
 	if (this->lastTimeStamp == time)
 	{
-		auto it = this->keyframeHandler.end();
+		auto it = this->keyframes.end();
 		it--;
 		this->lastTimeStamp = it->first;
 	}
-	this->keyframeHandler.erase(time);
+	this->keyframes.erase(time);
 }
 
 void KeyframeHandler::removeKeyframeAction(unsigned int time, string actionName)
 {
-	this->keyframeHandler.at(time)->removeAction(actionName);
+	this->keyframes.at(time)->removeAction(actionName);
 }
 
 void KeyframeHandler::activateKeyframe(unsigned int time)
 {
-	this->keyframeHandler.at(time)->activateKeyframe();
+	this->keyframes.at(time)->activateKeyframe();
 }
 
 bool KeyframeHandler::exists(unsigned int time)
 {
-	return this->keyframeHandler.find(time) != this->keyframeHandler.end();
+	return this->keyframes.find(time) != this->keyframes.end();
 }
 
 bool KeyframeHandler::behindLastKeyframe(unsigned int time)
 {
-	return (time > this->lastTimeStamp);
+	return (time >= this->lastTimeStamp);
 }

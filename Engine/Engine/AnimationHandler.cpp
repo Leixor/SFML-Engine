@@ -16,9 +16,7 @@ bool AnimationHandler::update()
 		if (this->animations.atIndex(i)->isRunning())
 		{
 			this->animations.atIndex(i)->updateSync();
-
-			if (this->animations.atIndex(i)->isRunning())
-				finished = false;
+			finished = false;
 		}
 	}
 	return finished;

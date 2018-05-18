@@ -46,20 +46,20 @@
     <Filter Include="AnimationStuff\Animation">
       <UniqueIdentifier>{0a0a4a2f-e98b-4b5f-bf4e-8cc83c21f419}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AnimationStuff\Keyframe">
-      <UniqueIdentifier>{4fdc1342-ec81-4ecf-8712-b4013ff24fd7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AnimationStuff\SubAnimation">
-      <UniqueIdentifier>{dfb9b154-e466-478d-9534-5d3a8ad74dbc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AnimationStuff\AnimationObject">
-      <UniqueIdentifier>{4f048140-c08d-41cb-b5dc-c2f81ac0e8ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\Engine">
       <UniqueIdentifier>{5a420843-7b5a-4f41-bdf2-016ae5f8d546}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AnimationStuff\BaseAnimation">
+    <Filter Include="AnimationStuff\Animation\BaseAnimation">
       <UniqueIdentifier>{76f307d4-8271-4bb3-974d-6a09755b9689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimationStuff\Animation\KeyframeHandler">
+      <UniqueIdentifier>{45f0da86-de1e-417c-b236-3c54f6fc7878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimationStuff\Animation\KeyframeHandler\Keyframe">
+      <UniqueIdentifier>{4fdc1342-ec81-4ecf-8712-b4013ff24fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimationStuff\Animation\BaseAnimation\AnimationObject">
+      <UniqueIdentifier>{4f048140-c08d-41cb-b5dc-c2f81ac0e8ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -87,14 +87,8 @@
     <ClInclude Include="AnimationHandler.h">
       <Filter>AnimationStuff\AnimationHandler</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>AnimationStuff\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Keyframe.h">
-      <Filter>AnimationStuff\Keyframe</Filter>
-    </ClInclude>
-    <ClInclude Include="SubAnimation.h">
-      <Filter>AnimationStuff\SubAnimation</Filter>
+      <Filter>AnimationStuff\Animation\KeyframeHandler\Keyframe</Filter>
     </ClInclude>
     <ClInclude Include="Vector2f.h">
       <Filter>HelperClasses</Filter>
@@ -115,7 +109,7 @@
       <Filter>HelperClasses</Filter>
     </ClInclude>
     <ClInclude Include="AnimationObject.h">
-      <Filter>AnimationStuff\AnimationObject</Filter>
+      <Filter>AnimationStuff\Animation\BaseAnimation\AnimationObject</Filter>
     </ClInclude>
     <ClInclude Include="GameEngine.h">
       <Filter>GameEngine\Engine</Filter>
@@ -124,7 +118,19 @@
       <Filter>GameEngine\Engine</Filter>
     </ClInclude>
     <ClInclude Include="BaseAnimation.h">
-      <Filter>AnimationStuff\BaseAnimation</Filter>
+      <Filter>AnimationStuff\Animation\BaseAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="SubAnimation.h">
+      <Filter>AnimationStuff\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyframeHandler.h">
+      <Filter>AnimationStuff\Animation\KeyframeHandler\Keyframe</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>AnimationStuff\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAnimationContainer.h">
+      <Filter>AnimationStuff\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,14 +155,8 @@
     <ClCompile Include="AnimationHandler.cpp">
       <Filter>AnimationStuff\AnimationHandler</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>AnimationStuff\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="Keyframe.cpp">
-      <Filter>AnimationStuff\Keyframe</Filter>
-    </ClCompile>
-    <ClCompile Include="SubAnimation.cpp">
-      <Filter>AnimationStuff\SubAnimation</Filter>
+      <Filter>AnimationStuff\Animation\KeyframeHandler\Keyframe</Filter>
     </ClCompile>
     <ClCompile Include="BaseObject.cpp">
       <Filter>Object\BaseObject</Filter>
@@ -168,13 +168,25 @@
       <Filter>GameEngine\PhysicalWorld</Filter>
     </ClCompile>
     <ClCompile Include="AnimationObject.cpp">
-      <Filter>AnimationStuff\AnimationObject</Filter>
+      <Filter>AnimationStuff\Animation\BaseAnimation\AnimationObject</Filter>
     </ClCompile>
     <ClCompile Include="GameEngine.cpp">
       <Filter>GameEngine\Engine</Filter>
     </ClCompile>
     <ClCompile Include="BaseAnimation.cpp">
-      <Filter>AnimationStuff\BaseAnimation</Filter>
+      <Filter>AnimationStuff\Animation\BaseAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="SubAnimation.cpp">
+      <Filter>AnimationStuff\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyframeHandler.cpp">
+      <Filter>AnimationStuff\Animation\KeyframeHandler\Keyframe</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>AnimationStuff\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAnimationContainer.cpp">
+      <Filter>AnimationStuff\Animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

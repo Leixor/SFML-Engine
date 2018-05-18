@@ -15,7 +15,7 @@ class SubAnimation : public BaseAnimation
 {
 public:
 	// Time duration in millisec
-	SubAnimation(unsigned int duration, BezierHandles handles = BezierHandles(0.1f, 0.1f, 0.9f, 0.9f));
+	SubAnimation(unsigned int duration, unsigned int updateRate, BezierHandles handles = BezierHandles(0.1f, 0.1f, 0.9f, 0.9f));
 	~SubAnimation();
 
 	virtual void setup();

@@ -1,9 +1,8 @@
 #include "Animation.h"
 
-Animation::Animation(unsigned int updateRate) : keyframeHandler(), distinct(true)
+Animation::Animation(unsigned int updateRate)
 {
 	this->updateCount = 1;
-	this->lastTimeStamp = 0;
 	this->updateRate = updateRate;
 }
 
@@ -24,8 +23,8 @@ void Animation::update(vector<AnimationObject*>* objects)
 {
 	unsigned int currentTime = this->getTime();
 
-	if (keyframeHandler.exists(currentTime))
-		keyframeHandler.activateKeyframe(currentTime);
+	if (this->keyframeHandler.exists(currentTime))
+		this->keyframeHandler.activateKeyframe(currentTime);
 
 	for (unsigned int i = 0; i < this->subAnimations.size(); i++)
 	{
@@ -38,7 +37,7 @@ void Animation::update(vector<AnimationObject*>* objects)
 	this->increaseTimeCount();
 
 	//schaut ob die animation fertig ist
-	if (this->getTime() > this->lastTimeStamp)
+	if (this->keyframeHandler.behindLastKeyframe(this->getTime()))
 	{
 		bool finished = true;
 		for (unsigned int i = 0; i < this->subAnimations.size(); i++)
@@ -56,30 +55,6 @@ void Animation::update(vector<AnimationObject*>* objects)
 	}
 }
 
-
-
-void Animation::addKeyframe(string name, KeyframeAction action, unsigned int time)
-{
-	switch (action)
-	{
-		case ANISTART:
-			this->keyframeHandler.addKeyframe(name, [&, name]() {this->subAnimations.at(name)->start(); }, time);
-			break;
-		case ANIPAUSE:
-			this->keyframeHandler.addKeyframe(name, [&, name]() {this->subAnimations.at(name)->pause(); }, time);
-			break;
-		case ANIRESTART:
-			this->keyframeHandler.addKeyframe(name, [&, name]() {this->subAnimations.at(name)->restart(); }, time);
-			break;
-		case ANIRESUME:
-			this->keyframeHandler.addKeyframe(name, [&, name]() {this->subAnimations.at(name)->resume(); }, time);
-			break;
-		case ANILOOPING:
-			this->keyframeHandler.addKeyframe(name, [&, name]() {this->subAnimations.at(name)->setLooping(); }, time);
-	}
-}
-
-
 void Animation::addObject(AnimationObject* object)
 {
 	this->objects.push_back(object);
@@ -94,17 +69,3 @@ void Animation::removeObject(AnimationObject* object)
 
 	this->objects.erase(it);	
 }
-
-void Animation::setUpdateRate(unsigned int updateRate)
-{
-	this->updateRate = updateRate;
-	for (unsigned int i = 0; i < this->subAnimations.size(); i++)
-	{
-		this->subAnimations.atIndex(i)->setUpdateRate(updateRate);
-
-		SubAnimation* tmp = dynamic_cast<SubAnimation*>(this->subAnimations.atIndex(i));
-		if (tmp != nullptr)
-			tmp->setup();
-	}
-}
-

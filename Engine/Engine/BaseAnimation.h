@@ -1,5 +1,6 @@
 #pragma once
 #include "AnimationObject.h"
+#include "ExternalInclude.h"
 
 class BaseAnimation
 {

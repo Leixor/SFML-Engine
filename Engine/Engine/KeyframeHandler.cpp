@@ -1,17 +1,14 @@
 #include "KeyframeHandler.h"
 
-
-
 KeyframeHandler::KeyframeHandler()
 {
 }
-
 
 KeyframeHandler::~KeyframeHandler()
 {
 }
 
-void KeyframeHandler::addKeyframe(string actionName, function<void(void)> action, unsigned int time)
+void KeyframeHandler::addKeyframe(unsigned int time, function<void(void)> action, string actionName)
 {
 	if (this->lastTimeStamp < time)
 		this->lastTimeStamp = time;
@@ -20,7 +17,6 @@ void KeyframeHandler::addKeyframe(string actionName, function<void(void)> action
 		this->keyframeHandler.emplace(time, new Keyframe());
 
 	Keyframe* frame = this->keyframeHandler.at(time);
-
 	frame->addAction(action, actionName);
 }
 
@@ -48,4 +44,9 @@ void KeyframeHandler::activateKeyframe(unsigned int time)
 bool KeyframeHandler::exists(unsigned int time)
 {
 	return this->keyframeHandler.find(time) != this->keyframeHandler.end();
+}
+
+bool KeyframeHandler::behindLastKeyframe(unsigned int time)
+{
+	return (time > this->lastTimeStamp);
 }

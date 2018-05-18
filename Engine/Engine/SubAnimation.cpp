@@ -1,8 +1,9 @@
 #include "SubAnimation.h"
 
-SubAnimation::SubAnimation(unsigned int duration, BezierHandles handles)
+SubAnimation::SubAnimation(unsigned int duration, unsigned int updateRate, BezierHandles handles)
 	: duration(duration), handles(handles)
 {
+	this->updateRate = updateRate;
 	this->setup();
 }
 

@@ -5,6 +5,5 @@ class AnimationObject
 public:
 	AnimationObject();
 	~AnimationObject();
-
 };
 

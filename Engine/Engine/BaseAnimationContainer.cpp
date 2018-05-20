@@ -8,40 +8,36 @@ BaseAnimationContainer::~BaseAnimationContainer()
 {
 }
 
-void BaseAnimationContainer::update(vector<AnimationObject*>* objects)
+bool BaseAnimationContainer::update(vector<AnimationObject*>* objects)
 {
 	unsigned int currentTime = this->getTime();
 
 	if (this->keyframeExists(currentTime))
 		this->activateKeyframe(currentTime);
 
+	this->running = false;
 	for (unsigned int i = 0; i < this->subAnimations.size(); i++)
 	{
-		if (this->subAnimations.atIndex(i)->isRunning())
+		if (this->subAnimations.atIndex(i)->update(objects))
 		{
-			this->subAnimations.atIndex(i)->update(objects);
+			this->running = true;;
 		}
+	}
+
+	
+
+	//schaut ob die animation fertig ist
+	if (this->behindLastKeyframe(this->getTime()) && !this->running)
+	{
+		if (this->isLooping())
+			this->start(true);
+		else
+			this->running = false;
 	}
 
 	this->increaseTimeCount();
 
-	//schaut ob die animation fertig ist
-	if (this->behindLastKeyframe(this->getTime()))
-	{
-		bool finished = true;
-		for (unsigned int i = 0; i < this->subAnimations.size(); i++)
-		{
-			if (this->subAnimations.atIndex(i)->isRunning())
-				finished = false;
-		}
-		if (finished)
-		{
-			if (this->isLooping())
-				this->start(true);
-			else
-				this->running = false;
-		}
-	}
+	return this->running;
 }
 
 void BaseAnimationContainer::setUpdateRate(unsigned int updateRate)

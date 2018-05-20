@@ -8,7 +8,7 @@ public:
 	~Animation() {}
 
 	void updateSync();
-	void update(vector<AnimationObject*>* objects);
+	bool update(vector<AnimationObject*>* objects);
 	
 	void addObject(AnimationObject* object);
 	void removeObject(AnimationObject* object);

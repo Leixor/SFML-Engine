@@ -2,8 +2,8 @@
 
 Animation::Animation(unsigned int updateRate)
 {
-	this->updateCount = 1;
 	this->updateRate = updateRate;
+	this->updateCount = updateRate / MS_PER_UPDATE;
 }
 
 void Animation::updateSync()
@@ -19,40 +19,35 @@ void Animation::updateSync()
 	}
 }
 
-void Animation::update(vector<AnimationObject*>* objects)
+bool Animation::update(vector<AnimationObject*>* objects)
 {
+	counter++;
 	unsigned int currentTime = this->getTime();
 
 	if (this->keyframeExists(currentTime))
 		this->activateKeyframe(currentTime);
 
+	this->running = false;
 	for (unsigned int i = 0; i < this->subAnimations.size(); i++)
 	{
-		if (this->subAnimations.atIndex(i)->isRunning())
+		if (this->subAnimations.atIndex(i)->update(&this->objects))
 		{
-			this->subAnimations.atIndex(i)->update(&this->objects);
+			this->running = true;
 		}
 	}
 
 	//schaut ob die animation fertig ist
-	if (this->behindLastKeyframe(this->getTime()))
+	if (this->behindLastKeyframe(this->getTime()) && !this->running)
 	{
-		bool finished = true;
-		for (unsigned int i = 0; i < this->subAnimations.size(); i++)
-		{
-			if (this->subAnimations.atIndex(i)->isRunning())
-				finished = false;
-		}
-		if (finished)
-		{
 			if (this->isLooping())
 				this->start(true);
 			else
 				this->running = false;
-		}
 	}
 
 	this->increaseTimeCount();
+
+	return this->running;
 }
 
 void Animation::addObject(AnimationObject* object)

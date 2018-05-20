@@ -3,7 +3,7 @@
 BaseAnimation::BaseAnimation()
 {
 	this->timeCount = 0;
-	this->running = false;
+	this->running = true;
 }
 
 BaseAnimation::~BaseAnimation()

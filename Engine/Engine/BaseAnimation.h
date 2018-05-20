@@ -8,7 +8,7 @@ public:
 	BaseAnimation();
 	~BaseAnimation();
 
-	virtual void update(vector<AnimationObject*>* objects) = 0;
+	virtual bool update(vector<AnimationObject*>* objects) = 0;
 
 	void start(bool loop = false);
 	void restart();
@@ -26,8 +26,10 @@ protected:
 
 	unsigned int getTime();
 	bool isLooping();
+	int counter;
 private:
 	unsigned int timeCount;
 	bool loop;
+	
 };
 

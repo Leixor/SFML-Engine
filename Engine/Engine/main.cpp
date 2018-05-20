@@ -7,29 +7,33 @@
 int main()
 {
 	AnimationHandler handler;
-	Animation* tmp = new Animation();
-	tmp->addObject(new AnimationObject());
+	Animation* Oberanimation = new Animation();
+	Oberanimation->addObject(new AnimationObject());
 
-	Animation* bsp1 = tmp->addSubAnimation("bsp1", new Animation(), 100);
-	bsp1->addObject(new AnimationObject());
+	Animation* Unteranimation = Oberanimation->addSubAnimation("Unteranimation", new Animation(), 0);
+	Unteranimation->addObject(new AnimationObject());
+	Unteranimation->addObject(new AnimationObject());
 
-	tmp->addKeyframe(100, [&] {	tmp->getSubAnimation("bsp1")->setLooping(true); });
-	tmp->addKeyframe(600, [&] {tmp->getSubAnimation("bsp1")->pause(); });
+	Oberanimation->addKeyframe(0, [&] {Oberanimation->getSubAnimation("Unteranimation")->setLooping(true);});
+	Oberanimation->addKeyframe(600, [&] {Oberanimation->getSubAnimation("Unteranimation")->setLooping(false);});
+	Oberanimation->addKeyframe(600, [&] {Oberanimation->getSubAnimation("Unteranimation")->pause();});
 
-	Animation* bsp2 = new Animation(*bsp1);
-	bsp1->addSubAnimation("bsp2", bsp2);
+	Animation* UnterUnterAnimation = new Animation();
+	*UnterUnterAnimation = *Unteranimation;
+	Unteranimation->addSubAnimation("UnterUnterAnimation", UnterUnterAnimation);
+	UnterUnterAnimation->addObject(new AnimationObject());
 
-	bsp1->addKeyframe(0, [&] {bsp1->getSubAnimation("bsp2")->setLooping(true); });
-	bsp1->addKeyframe(800, [&] {bsp1->getSubAnimation("bsp2")->pause(); });
+	Unteranimation->addKeyframe(0, [&] {Unteranimation->getSubAnimation("UnterUnterAnimation")->setLooping(true); });
+	Unteranimation->addKeyframe(800, [&] {Unteranimation->getSubAnimation("UnterUnterAnimation")->setLooping(false);});
 
-	tmp->setUpdateRate(100);
+	Oberanimation->setUpdateRate(100);
 
-	handler.addAnimation("tmp", tmp);
+	handler.addAnimation("tmp", Oberanimation);
 	handler.run("tmp");
 
 	for (int i = 0; i < 1000; i++)
 	{
-		if (handler.update())
+		if (!handler.update())
 		{
 			printf("%d", i);
 			int k = 0;

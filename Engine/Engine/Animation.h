@@ -8,10 +8,11 @@ public:
 	~Animation() {}
 
 	void updateSync();
-	void update(vector<AnimationObject*>* objects);
+	bool update(vector<AnimationObject*>* objects);
 	
 	void addObject(AnimationObject* object);
 	void removeObject(AnimationObject* object);
+	void setUpdateRate(unsigned int updateRate);
 protected:
 	vector<AnimationObject*> objects;
 	unsigned int updateCount;

@@ -10,8 +10,8 @@ public:
 	BaseAnimationContainer();
 	~BaseAnimationContainer();
 
-	void update(vector<AnimationObject*>* objects);
-	void setUpdateRate(unsigned int updateRate);
+	bool update(vector<AnimationObject*>* objects);
+	virtual void setUpdateRate(unsigned int updateRate);
 	template <typename returnType>
 	returnType addSubAnimation(string name, returnType animation, unsigned int startTime = 0);
 

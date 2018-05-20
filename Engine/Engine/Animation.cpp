@@ -21,7 +21,9 @@ void Animation::updateSync()
 
 bool Animation::update(vector<AnimationObject*>* objects)
 {
-	counter++;
+	if (!this->running)
+		return this->running;
+
 	unsigned int currentTime = this->getTime();
 
 	if (this->keyframeExists(currentTime))
@@ -35,14 +37,10 @@ bool Animation::update(vector<AnimationObject*>* objects)
 			this->running = true;
 		}
 	}
-
-	//schaut ob die animation fertig ist
-	if (this->behindLastKeyframe(this->getTime()) && !this->running)
+	
+	if (this->behindLastKeyframe(this->getTime()) && !this->running && this->isLooping())
 	{
-			if (this->isLooping())
-				this->start(true);
-			else
-				this->running = false;
+		this->start(true);
 	}
 
 	this->increaseTimeCount();
@@ -63,4 +61,10 @@ void Animation::removeObject(AnimationObject* object)
 		throw;
 
 	this->objects.erase(it);	
+}
+
+void Animation::setUpdateRate(unsigned int updateRate)
+{
+	BaseAnimationContainer::setUpdateRate(updateRate);
+	this->updateCount = updateRate / MS_PER_UPDATE;
 }

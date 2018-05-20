@@ -10,6 +10,9 @@ BaseAnimationContainer::~BaseAnimationContainer()
 
 bool BaseAnimationContainer::update(vector<AnimationObject*>* objects)
 {
+	if (!this->running)
+		return this->running;
+
 	unsigned int currentTime = this->getTime();
 
 	if (this->keyframeExists(currentTime))
@@ -20,19 +23,14 @@ bool BaseAnimationContainer::update(vector<AnimationObject*>* objects)
 	{
 		if (this->subAnimations.atIndex(i)->update(objects))
 		{
-			this->running = true;;
+			this->running = true;
 		}
 	}
 
-	
-
-	//schaut ob die animation fertig ist
-	if (this->behindLastKeyframe(this->getTime()) && !this->running)
+	// schaut ob die animation fertig ist
+	if (this->behindLastKeyframe(this->getTime()) && !this->running && this->isLooping())
 	{
-		if (this->isLooping())
-			this->start(true);
-		else
-			this->running = false;
+		this->start(true);
 	}
 
 	this->increaseTimeCount();

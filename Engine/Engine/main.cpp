@@ -7,7 +7,7 @@
 int main()
 {
 	AnimationHandler handler;
-	Animation* Oberanimation = new Animation(100);
+	Animation* Oberanimation = new Animation();
 	Oberanimation->addObject(new AnimationObject());
 
 	Animation* Unteranimation = Oberanimation->addSubAnimation("Unteranimation", new Animation(), 0);
@@ -15,17 +15,18 @@ int main()
 	Unteranimation->addObject(new AnimationObject());
 
 	Oberanimation->addKeyframe(0, [&] {Oberanimation->getSubAnimation("Unteranimation")->setLooping(true);});
-	Oberanimation->addKeyframe(600, [&] {Oberanimation->getSubAnimation("Unteranimation")->setLooping(false); });
+	Oberanimation->addKeyframe(600, [&] {Oberanimation->getSubAnimation("Unteranimation")->setLooping(false);});
+	Oberanimation->addKeyframe(600, [&] {Oberanimation->getSubAnimation("Unteranimation")->pause();});
 
-	//Animation* UnterUnterAnimation = new Animation();
-	//*UnterUnterAnimation = *Unteranimation;
-	//Unteranimation->addSubAnimation("UnterUnterAnimation", UnterUnterAnimation);
-	//UnterUnterAnimation->addObject(new AnimationObject());
+	Animation* UnterUnterAnimation = new Animation();
+	*UnterUnterAnimation = *Unteranimation;
+	Unteranimation->addSubAnimation("UnterUnterAnimation", UnterUnterAnimation);
+	UnterUnterAnimation->addObject(new AnimationObject());
 
-	//Unteranimation->addKeyframe(0, [&] {Unteranimation->getSubAnimation("UnterUnterAnimation")->setLooping(true); });
-	//Unteranimation->addKeyframe(800, [&] {Unteranimation->getSubAnimation("UnterUnterAnimation")->setLooping(false); });
+	Unteranimation->addKeyframe(0, [&] {Unteranimation->getSubAnimation("UnterUnterAnimation")->setLooping(true); });
+	Unteranimation->addKeyframe(800, [&] {Unteranimation->getSubAnimation("UnterUnterAnimation")->setLooping(false);});
 
-	Oberanimation->setUpdateRate(50);
+	Oberanimation->setUpdateRate(100);
 
 	handler.addAnimation("tmp", Oberanimation);
 	handler.run("tmp");

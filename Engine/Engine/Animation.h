@@ -12,6 +12,7 @@ public:
 	
 	void addObject(AnimationObject* object);
 	void removeObject(AnimationObject* object);
+	void setUpdateRate(unsigned int updateRate);
 protected:
 	vector<AnimationObject*> objects;
 	unsigned int updateCount;

@@ -28,6 +28,7 @@ int main()
 
 	Oberanimation->setUpdateRate(100);
 
+	// okay
 	handler.addAnimation("tmp", Oberanimation);
 	handler.run("tmp");
 

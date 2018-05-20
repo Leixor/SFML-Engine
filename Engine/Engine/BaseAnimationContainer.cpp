@@ -23,7 +23,7 @@ bool BaseAnimationContainer::update(vector<AnimationObject*>* objects)
 			this->running = true;;
 		}
 	}
-	//Asdaiwhdoiasodasdas
+
 	
 
 	//schaut ob die animation fertig ist
